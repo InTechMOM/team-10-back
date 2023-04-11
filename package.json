@@ -1,14 +1,30 @@
 {
-  "name": "mvp",
+  "name": "mvp", //Producto Minimo Viable
   "version": "1.0.0",
-  "description": "",
+  "description": "Platform that allows the student leader and the members of a group to upload videos online, fulfilling the assigned missions of the different subjects and the teacher can provide feedback by commenting on the video at a certain time of playback and then rating it.",
   "main": "app.js",
-  "dependencies": {
-  },
   "scripts": {
     "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Intech Mom",
-  "type": "module"
+  "author": "Angie Reyes", //Author
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InTechMOM/team-10-back.git" 
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InTechMOM/team-10-back/issues"
+  },
+  "homepage": "https://github.com/InTechMOM/team-10-back#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3", 
+    "express": "^4.18.2",
+    "morgan": "^1.10.0" 
+  }
 }

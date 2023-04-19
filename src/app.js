@@ -1,8 +1,6 @@
-//Import internas desde index.js
 import express from "express";
-import { port } from "./config/index.js"; //Siempre poner .js
 import mongoose from "mongoose"; 
-import { mongodb_uri } from "./config/index.js";
+import { port, mongodb_uri } from "./config/index.js";
 
 //Establece const
 const app = express();
@@ -11,14 +9,14 @@ app.get("/", (request, response, error) => {
   response.send("Status:OK")
 })
 
-//Base de Datos, Debe ir antes del listen
+//Base de Datos
 mongoose
-.connect(mongodb_uri) //Se usa el metodo connect para vincular la URI(process.env para pasar el valor de la variable de entorno), y el segundo parametro son opciones de configuración
-.then(() => console.log("Database is Connected")); //Promesa se resuelve satisfactoriamente
-//.catch((error) => console.error(error));//Promesa es rechazada //no funciona
+.connect(mongodb_uri) 
+.then(() => console.log("Database is Connected")) 
+.catch((error) => console.error(error));
 
-//Comprobarlo npm run dev
-app.listen(port, (error) => { //Le dice a serv que escuche al puer, poniendolo en estado de ejecución
+
+app.listen(port, (error) => 
 
   if(error) {
     console.log("Server Error: Failed");

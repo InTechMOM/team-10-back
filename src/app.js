@@ -8,14 +8,17 @@ import { mongodb_uri } from "./config/index.js";
 const app = express();
 
 app.get("/", (request, response, error) => {
-  response.send("Status:OK")
+  response.send("Status:OK")7/Utilizarlo en post
 })
 
 //Base de Datos, Debe ir antes del listen
 mongoose
 .connect(mongodb_uri) //Se usa el metodo connect para vincular la URI(process.env para pasar el valor de la variable de entorno), y el segundo parametro son opciones de configuración
-.then(() => console.log("Database is Connected")); //Promesa se resuelve satisfactoriamente
-//.catch((error) => console.error(error));//Promesa es rechazada //no funciona
+.then(() => console.log("Database is Connected")) //Promesa se resuelve satisfactoriamente (No poner comas)
+.catch((error) => console.error(error));//Metodos encadenados
+
+//Opción 2
+mongoose.connect(process.env.MONGODB_URI).then(() => console.log("Connected to MongoDB Atlas")).catch((error) => console.error(error));
 
 //Comprobarlo npm run dev
 app.listen(port, (error) => { //Le dice a serv que escuche al puer, poniendolo en estado de ejecución
@@ -26,4 +29,5 @@ app.listen(port, (error) => { //Le dice a serv que escuche al puer, poniendolo e
   }
   console.log("Server listening in port " + port);
 })
+
 

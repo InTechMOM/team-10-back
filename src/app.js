@@ -3,6 +3,7 @@ import express from "express";
 import { port } from "./config/index.js";
 import mongoose from "mongoose"; 
 import { mongodb_uri } from "./config/index.js";
+import userRouters from "./api/users/routers/index.js"
 
 const app = express();
 
@@ -10,13 +11,12 @@ app.get("/", (request, response, error) => {
   response.send("Status:OK")
 })
 
+app.use("/api", userRouters);
+
 mongoose
 .connect(mongodb_uri)
 .then(() => console.log("Database is Connected"))
 .catch((error) => console.error(error));
-
-//Opción 2
-//mongoose.connect(process.env.MONGODB_URI).then(() => console.log("Connected to MongoDB Atlas")).catch((error) => console.error(error));
 
 app.listen(port, (error) => { 
   if(error) {
@@ -25,4 +25,5 @@ app.listen(port, (error) => {
   }
   console.log("Server listening in port " + port);
 })
+
 

@@ -1,46 +1,31 @@
-const mongoose = require("mongoose");
+import Joi from "joi";
 
-// Esquema
+// Esquema con Joi
+const userSchema = Joi.object({
+  name: Joi.string()
+    .required()
+    .alphanum() 
+    .uppercase() 
+    .min(8)
+    .max(32)
+    .noWhiteSpaces(),
+  
+  lastname: Joi.string()
+    .required()
+    .alphanum() 
+    .uppercase() 
+    .min(8)
+    .max(32)
+    .noWhiteSpaces(),
 
-let posibles_roles=["Soy estudiante", "Soy docente"]
+  email: Joi.string()
+    .required()
+    .email({minDomainSegments:2, tlds:{allow:["com","net"]}})
+    .noWhiteSpaces(),
 
-const userSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
-  name: {
-    type:String,
-    required:true,
-    alphanum:true, 
-    uppercase:true, 
-    min:[8,"La cadena es más corta de la requerida"],
-    max:32,
-    noWhiteSpaces:0,
-},
-  lastname: {
-    type:String,
-    required:true,
-    alphanum:true, 
-    uppercase:true, 
-    minlength:8,
-    maxlength:32,
-    noWhiteSpaces:0,
-},
-  email: {
-    type:String,
-    required:true,
-    minDomainSegments: [2,"La cadena no es un correo electrónico válido"], 
-    tlds: { allow: ['com', 'net'] },
-    noWhiteSpaces:0,
-},
-  rol: {
-    type:String,
-    enum:{
-    values:posibles_roles,message:"Opción no valida"}
-},
-creationDate: { 
-    type:Date,
-    default: Date.now
-}
-})
+  rol: Joi.string()
+    .required()
+    .enum({values:["Soy estudiante", "Soy docente"]}),
+});
 
-const user = mongoose.model("user", userSchema); //se crea el modulo Parametrs; 1)Nombre del modelo, 2)Nombre del esquema
-module.exports = user;
+export default userSchema;

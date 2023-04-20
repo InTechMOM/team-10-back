@@ -1,9 +1,6 @@
-//Logica de la app
 import express from "express";
-import { port } from "./config/index.js";
 import mongoose from "mongoose"; 
-import { mongodb_uri } from "./config/index.js";
-import userRouters from "./api/users/routers/index.js"
+import { port, mongodb_uri } from "./config/index.js";
 
 const app = express();
 

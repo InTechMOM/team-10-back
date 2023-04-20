@@ -1,4 +1,11 @@
-import * as dotenv from "dotenv"; // Import externas primero
+// Import externas
+import * as dotenv from "dotenv"; 
 dotenv.config();
 
-export const port = process.env.PORT; //Import internas
+// Export internas
+export const port = process.env.PORT; 
+export const mongodb_uri= process.env.MONGODB_URI ;
+
+
+
+

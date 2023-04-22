@@ -12,6 +12,10 @@ router.get("/", lecturaServidor);
 //Creación de un usuario
 router.post("/register", register);
 
+//Leer el usuario
+//router.get("/users/{id}", lecturaServidor);
+
+
 
 export default router; 
 

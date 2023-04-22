@@ -1,14 +1,13 @@
 import { Schema, model} from "mongoose";//import mongose y se instancio esquema y model.
 
 // Esquema
-
 let posibles_roles=["Soy estudiante", "Soy docente"]
-
 const userSchema = new Schema({
   name: {
     type:String,
     required:true,
-    alphanum:true, 
+    alphanum:true,
+    uppercase:true,
     min:[3,"La cadena es más corta de la requerida"],
     max:32,
     noWhiteSpaces:0
@@ -17,6 +16,7 @@ const userSchema = new Schema({
     type:String,
     required:true,
     alphanum:true, 
+    uppercase:true,
     minlength:3,
     maxlength:32,
     noWhiteSpaces:0
@@ -24,21 +24,22 @@ const userSchema = new Schema({
   email: {
     type:String,
     required:true,
-    minDomainSegments: [2,"La cadena no es un correo electrónico válido"], 
+    minDomainSegments: 2, 
     tlds: { allow: ['com', 'net'] },
-    noWhiteSpaces:0,
-    unique: true
+    noWhiteSpaces:0, //No esta en joi
+    unique: true //No esta en joi
 },
   rol: {
     type:String,
+    required:true,
     enum:{
     values:posibles_roles,message:"Opción no valida"}
 },
   Date: { 
-    type:Date,
-    default: Date.now
+    type: Date,
+    default: new Date()
 }
 })
 
 //se crea el modelo Parametrs; 1)Nombre del modelo, 2)Nombre del esquema
-export default model("User", userSchema);
+export default model("User", userSchema);// el plural se llamara la colección

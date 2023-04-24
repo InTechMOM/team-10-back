@@ -23,7 +23,7 @@ const register = async (request, response) => { //async debe ir en un afunción 
     rol: request.body.rol
   }); //punto y coma
   try {
-    const Cluster0 = await user.create(); //constante que se llenara con los datos, esperar a que se guarde el user
+    const Cluster0 = await user.save(); //constante que se llenara con los datos, esperar a que se guarde el user
     response.status(200).json({
       saved:("Ok"),
       data: Cluster0

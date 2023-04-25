@@ -15,7 +15,7 @@
 
 
 //Se crea metodo para encriptar contraseña por seguridad
-UserSchema.methods.encrypPassword= password => {
-  const salt = bycrypt.genSalt(10); //await para decir que es asincronó 
-  return bycrypt.has(password, salt);
-}
+//UserSchema.methods.encrypPassword= password => {
+  //const salt = bycrypt.genSalt(10); //await para decir que es asincronó 
+  //return bycrypt.has(password, salt);
+//}

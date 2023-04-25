@@ -1,11 +1,7 @@
-//variables de entorno
-
-// Import externas
-import * as dotenv from "dotenv";  //Dep que permite traer las variables de entorno
+import * as dotenv from "dotenv";  
 dotenv.config();
 
-// Export internas
-export const port = process.env.PORT; //Se exportan las variables
+export const port = process.env.PORT; 
 export const mongodb_uri= process.env.MONGODB_URI ;
 
 

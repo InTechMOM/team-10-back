@@ -1,8 +1,8 @@
 import Joi from "joi"; //Se llama al modulo de Joi
 
 const UserRole = {
-  Docente:"Soy docente",
-  Estudiante:"Soy estudiante"
+  Docente:"Soy Docente",
+  Estudiante:"Soy Estudiante"
 }
 
 // Esquema con Joi

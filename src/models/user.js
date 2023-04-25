@@ -1,7 +1,7 @@
 import { Schema, model} from "mongoose";//import mongose y se instancio esquema y model.
 
 // Esquema
-let posibles_roles=["Soy estudiante", "Soy docente"]
+let posibles_roles=["Soy Estudiante", "Soy Docente"]
 const userSchema = new Schema({
   name: {
     type:String,

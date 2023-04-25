@@ -4,6 +4,7 @@ import { port } from "./config/index.js"; //servidor importar variable de puerto
 import "./config/dbConnection.js"; //Lee el respectivo archivo y se conecta a la bd, y siempre poner extensión de archivo
 import router from "./router.js"; //¿cambiar nombre de roueter?
 import bodyParser from "body-parser"; // funciona como un middleware
+import middlewareErrors from "./api/users/errors/errors.js";
 
 const app = express(); //Servidor
 
@@ -11,6 +12,9 @@ const app = express(); //Servidor
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // habilitando la lectura de las solicitudes en json con parser
 app.use("/api", router);
+
+
+app.use(middlewareErrors); //debe ser el último en las rutas, antes de terminar proceso de la petición
  
 app.listen(port, (error) => { //Servidor, permite que el puerto escuche
   if(error) {

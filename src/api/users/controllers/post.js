@@ -53,9 +53,3 @@ export const login = async (request, response, next) => {
 
  next (error);
 }
-
-
-
-
-
-

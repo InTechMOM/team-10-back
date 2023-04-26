@@ -16,12 +16,7 @@ export const register = async (request, response, next) => {
   }
     
   //Creación 
-    const user = new User({
-    name: request.body.name,
-    lastname: request.body.lastname,
-    email: request.body.email,
-    rol: request.body.rol
-  });
+    const user = new User(request.body);
 
   try { 
     const Cluster0 = await user.save();

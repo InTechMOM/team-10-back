@@ -12,7 +12,7 @@ const userEdit = async (request, response, next) => {
   try { 
      const userUpdate = await User.findByIdAndUpdate(id , request.body, {new:true});
      response.status(200).json({
-       saved:("Ok"),
+       update:("Ok"),
        data: userUpdate
      })
    } catch (error) { 

@@ -1,6 +1,7 @@
 import express from "express"; 
 const router = express.Router(); 
-import { register , login }  from "./api/users/controllers/post.js";
+import register from "./api/users/controllers/post.js";
+import login from "./api/users/controllers/login.js";
 import { lecturaServidor , userId , listUsers , preordain} from "./api/users/controllers/get.js";
 import userEdit from "./api/users/controllers/put.js";
 import userDelete from "./api/users/controllers/delete.js";

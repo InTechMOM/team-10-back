@@ -12,8 +12,8 @@ const userEdit = async (request, response, next) => {
   try { 
      const userUpdate = await User.findByIdAndUpdate(id , request.body, {new:true});
      response.status(200).json({
-       saved:("Ok"),
-       data: userUpdate
+        update:("Ok"),
+        data: userUpdate
      })
    } catch (error) { 
      next (error);

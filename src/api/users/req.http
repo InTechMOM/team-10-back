@@ -1,0 +1,46 @@
+###
+POST
+http://localhost:3000/api/users/register HTTP/1.1
+Content-Type: application/json
+
+{
+  "name":{
+    "firstname":"KAREN",
+    "lastname":"ECHAVARRIA"
+  },
+    "email":"some@example.com",
+    "rol":"Soy Estudiante"
+}
+
+###
+GET
+http://localhost:3000/api/users/list HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
+
+###
+GET
+http://localhost:3000/api/users/:id HTTP/1.1 (id del usuario)
+
+###
+PUT
+http://localhost:3000/api/users/:id HTTP/1.1 (id del usuario)
+Content-Type: application/json
+
+{
+  "name":{
+    "firstname":"ANDREA",
+    "lastmane":"ECHAVARRIA"
+  }
+}
+
+###
+DELETE
+http://localhost:3000/api/users/:id HTTP/1.1 (id del usuario)
+
+
+
+

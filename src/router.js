@@ -10,6 +10,7 @@ import upload from "./api/videos/controllers/post.js";
 import { videosId , listVideos } from "./api/videos/controllers/get.js"
 import videoEdit from "./api/videos/controllers/patch.js";
 import videoDelete from "./api/videos/controllers/delete.js";
+import qualificationEdit from "./api/qualification/controllers/patch.js";
 
 router.get("/", lecturaServidor);
 
@@ -35,6 +36,9 @@ router.get("/videos/list", listVideos);
 router.get("/videos/:id", videosId);
 router.patch("/videos/:id", videoEdit);
 router.delete("/videos/:id", videoDelete);
+
+//qualification
+router.patch("/qualification/:id", qualificationEdit);
 
 //SIEMPRE DEJAR DE ULTIMA
 router.get("*", preordain);

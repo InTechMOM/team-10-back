@@ -1,3 +1,4 @@
+import User from "./user.js";
 import { Schema, model} from "mongoose";
 
 const videoprojectSchema = new Schema(
@@ -15,10 +16,10 @@ const videoprojectSchema = new Schema(
       type:String,
       required:true,
   },
-    autor: {
+    author: {
       type: Schema.Types.ObjectId, 
       ref: "User" 
-  }, //autor o estudiante
+  }, 
   },
   { 
     timestamps: true,    

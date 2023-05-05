@@ -18,28 +18,24 @@ const videoprojectSchema = new Schema(
   },
     skills: {
       communication: {
-       type:Number,
-        required:true,
-        min:0,
-       max:5
+      type:Number,
+      min:0,
+      max:5
      },
       collaboration: {
-       type:Number,
-        required:true,
-        min:0,
-       max:5
+      type:Number,
+      min:0,
+      max:5
       },
       creativity: {
-       type:Number,
-       required:true,
-       min:0,
-        max:5
+      type:Number,
+      min:0,
+      max:5
       },
       critical_thinking: {
-        type:Number,
-          required:true,
-        min:0,
-        max:5
+      type:Number,
+      min:0,
+      max:5
       }
     },
     comment: {

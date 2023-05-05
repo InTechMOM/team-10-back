@@ -4,7 +4,7 @@ http://localhost:3000/api/qualification/:id HTTP/1.1 (id de video)
 Content-Type: application/json
 
 {
-  skills: {
+  "skills": {
   "communication":"5",
   "collaboration": "4",
   "creativity": "5",

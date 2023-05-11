@@ -11,10 +11,7 @@ export const upload = async (request, response, next) => {
   }
 
   //Lectura de datos
-  const {
-    email,
-    url
-  } = request.body
+  const { email , url} = request.body
 
   //Busqueda por email en User
   const user = await User.findOne({email:request.body.email}).populate([{

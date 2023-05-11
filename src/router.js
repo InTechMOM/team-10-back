@@ -30,9 +30,10 @@ router.put("/users/:id", userEdit);
 router.delete("/users/:id", userDelete);
 
 //video
-router.post("/videos/upload", upload);
-router.get("/videos/list", listVideos);
-router.get("/videos/:id", videosId);
+router.post("/upload", upload);
+router.get("/videos", listVideos);
+//router.get("/videos/:id", videosId); //opción 1
+router.get("/videos/author", videosId); //opción 2
 router.patch("/videos/:id", videoEdit);
 router.delete("/videos/:id", videoDelete);
 

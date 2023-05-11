@@ -2,8 +2,7 @@ import { Schema, model} from "mongoose";
 
 let posibles_roles=["Soy Estudiante", "Soy Docente"]
 const userSchema = new Schema({
-  name:{
-    firstname: {
+  firstname: {
       type:String,
       required:true,
       alphanum:true,
@@ -12,7 +11,7 @@ const userSchema = new Schema({
       maxlength:32,
       noWhiteSpaces:0
   },
-    lastname: {
+  lastname: {
       type:String,
       required:true,
       alphanum:true, 
@@ -20,7 +19,7 @@ const userSchema = new Schema({
       minlength:3,
       maxlength:32,
       noWhiteSpaces:0
-  }},
+  },
   email: {
     type:String,
     required:true,

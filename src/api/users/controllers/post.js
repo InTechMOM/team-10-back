@@ -1,6 +1,25 @@
 import User from "../../../models/user.js";
 import { schemaRegister } from "./validation.js";
 
+/**
+ * @openapi
+ * /users:
+ *  post:
+ *   produces:
+ *    application/json
+ *   parameters:
+ *    name: name
+ *    in:
+ *    required: true
+ *    type: string
+ *   description: Creation API for users
+ *   responses:
+ *    200:
+ *     description: Bad request
+ *    400:
+ *     description: User created
+ */
+
 export const register = async (request, response, next) => { 
 
 //Registro 

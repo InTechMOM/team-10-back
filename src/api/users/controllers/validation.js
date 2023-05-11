@@ -23,6 +23,4 @@ export const schemaLogin = Joi.object ({
 export const schemaUpdate = Joi.object ({
   name: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(),
   lastname: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(), 
-  email: Joi.string().min(8).max(32).email({minDomainSegments:2, tlds:{allow:["com","net"]}}),
-  rol: Joi.string().valid(UserRole.teacher, UserRole.student)
 })

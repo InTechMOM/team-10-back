@@ -10,7 +10,7 @@ export const listUsers = async (request, response, next) => {
   try  {
     const arrayUsers = await User.find(); 
     return response.status(200).json({ 
-      listaUsers: arrayUsers})
+      list: arrayUsers})
   } catch (error) {
     response.status(400).json({ 
       error})

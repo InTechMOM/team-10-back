@@ -12,7 +12,7 @@ import videoDelete from "../controllers/delete.js";
 videosRouter.post("/upload", upload);
 
 //Consultar videos
-videosRouter.get("/list", listVideos);
+videosRouter.get("", listVideos);
 videosRouter.get("/:id", videosId);
 
 //Modificar videos

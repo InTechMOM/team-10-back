@@ -14,7 +14,7 @@ usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 
 //Leer el usuario
-usersRouter.get("/list", listUsers); 
+usersRouter.get("", listUsers); 
 usersRouter.get("/:id", userId);
 
 //Actualizar el usuario

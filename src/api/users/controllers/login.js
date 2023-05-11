@@ -6,15 +6,12 @@ const login = async (request, response, next) => {
   // Login
   const {error} = schemaLogin.validate(request.body);
   if (error) { 
-  return response.status(400).json({error: error.details[0].message}) 
+  return response.status(400).json({error: "Bad Request"}) 
   };
 
   //Acceso
-  const userVal = await User.findOne({ email:request.body.email }) 
-  if (!userVal) return response.status(400).json({error: "Unregistered User"});
-    const rolVal = await User.findOne({ rol:request.body.rol }) 
-    if (!rolVal) return response.status(400).json({error: "Unauthorized Access"});
-
+  const userVal = await User.findOne({ email:request.body.email , rol:request.body.rol }) 
+  if (!userVal) return response.status(400).json({error: "Unauthorized Access"});
    response.status(200).json("Welcome ")
 
  next (error);

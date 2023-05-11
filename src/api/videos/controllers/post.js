@@ -13,8 +13,14 @@ export const upload = async (request, response, next) => {
   //Lectura de datos
   const { email , url} = request.body
 
-  //Busqueda por email en User
-  const user = await User.findOne({email:request.body.email}).populate([{
+  //Busqueda por emailteacher y rol
+  const emailTeacher = await User.findOne({ email:request.body.email}) 
+  if (!emailTeacher) return response.status(400).json({error: "email is not from a teacher"});
+    const rolTeacher = await User.findOne({ rol: "Soy Docente"}) 
+    if (!rolTeacher) return response.status(400).json({error: "email is not from a teacher"});
+
+    //Busqueda por email en User
+    const user = await User.findOne({email:request.body.email}).populate([{
     path: "author", 
     select: "_id",
     strictPopulate: false

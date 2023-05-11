@@ -33,8 +33,7 @@ router.get("*", preordain);
 //video
 router.post("/upload", upload);
 router.get("/videos", listVideos);
-//router.get("/videos/:id", videosId); //opción 1
-router.get("/videos/author", videosId); //opción 2
+router.get("/videos/:id", videosId); 
 router.patch("/videos/:id", videoEdit);
 router.delete("/videos/:id", videoDelete);
 

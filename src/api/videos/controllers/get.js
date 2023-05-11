@@ -2,36 +2,24 @@ import User from "../../../models/user.js";
 import Videoproject from "../../../models/video.js"
 
 //busqueda de videos con :id del usuario
-// export const videosId = async (request, response) => { 
-//   const id = request.params.id
-//   const uservideoid = await User.findById(id)
-//   if (uservideoid) {
-//     const emailvideos = (uservideoid.email);
-//     const videoid = await Videoproject.find({email:emailvideos})
-//       if (videoid) {
-//        return response.status(200).json({ 
-//          data: videoid})
-//      } else {
-//           response.status(400).json({
-//            message:"User has not uploaded videos"})
-//      }
-//     } else {
-//       response.status(400).json({
-//        message:"User Not Found"})
-//  }
-// }
-
-//Opción 2
 export const videosId = async (request, response) => { 
   const id = request.params.id
-  const uservideoid = await Videoproject.findOne ({ author:request.body.author }) 
-  if (!uservideoid) 
-    return response.status(400).json({
-      message:"User has not uploaded videos"})
-    return response.status(200).json({
-      data: uservideoid})
+  const uservideoid = await User.findById(id)
+  if (uservideoid) {
+    const emailvideos = (uservideoid.email);
+    const videoid = await Videoproject.find({email:emailvideos})
+      if (videoid) {
+       return response.status(200).json({ 
+         data: videoid})
+     } else {
+          response.status(400).json({
+           message:"User has not uploaded videos"})
+     }
+    } else {
+      response.status(400).json({
+       message:"User Not Found"})
+ }
 }
-
 
 //busqueda de tdos los videos (listar)
 export const listVideos = async (request, response, next) => { 

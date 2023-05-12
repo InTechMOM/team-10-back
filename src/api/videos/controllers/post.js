@@ -11,15 +11,9 @@ export const upload = async (request, response, next) => {
   }
 
   //Lectura de datos
-  const { studentEmail , teacherEmail , url} = request.body
+  const { email , url} = request.body
 
-  //Busqueda por emailteacher y rol
-  const emailTeacher = await User.findOne({ email:request.body.teacherEmail}) 
-  if (!emailTeacher) return response.status(400).json({error: "email is not from a teacher"});
-    const rolTeacher = await User.findOne({ rol: "Soy Docente"}) 
-    if (!rolTeacher) return response.status(400).json({error: "mal"});
-
-    //Busqueda por email en User
+  //Busqueda por email en User
     const user = await User.findOne({email:request.body.studentEmail}).populate([{
     path: "author", 
     select: "_id",
@@ -33,8 +27,7 @@ export const upload = async (request, response, next) => {
 
   //Creación del video
   const newVideo = new Videoproject ({
-    studentEmail,
-    teacherEmail,
+    email,
     url,
     author: user._id
   })

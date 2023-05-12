@@ -3,16 +3,7 @@ import { Schema, model} from "mongoose";
 
 const videoprojectSchema = new Schema(
   {
-    studentEmail: {
-      type:String,
-      required:true,
-      minlength: 8,
-      maxlength: 32,
-      minDomainSegments: 2, 
-      tlds: { allow: ['com', 'net'] },
-      noWhiteSpaces:0
-  },
-    teacherEmail: {
+    email: {
       type:String,
       required:true,
       minlength: 8,

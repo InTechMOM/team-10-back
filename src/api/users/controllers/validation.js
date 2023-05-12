@@ -21,6 +21,6 @@ export const schemaLogin = Joi.object ({
 
 // Esquema Modificación (se dejan opcionales)
 export const schemaUpdate = Joi.object ({
-  name: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(),
+  firstname: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(),
   lastname: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(), 
 })

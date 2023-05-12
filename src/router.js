@@ -28,7 +28,6 @@ router.put("/users/:id", userEdit);
 
 //Eliminar el usuario
 router.delete("/users/:id", userDelete);
-router.get("*", preordain);
 
 //video
 router.post("/upload", upload);

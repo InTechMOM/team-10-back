@@ -3,7 +3,7 @@ import { Schema, model} from "mongoose";
 
 const videoprojectSchema = new Schema(
   {
-    email: {
+    studentEmail: {
       type:String,
       required:true,
       minlength: 8,
@@ -12,6 +12,15 @@ const videoprojectSchema = new Schema(
       tlds: { allow: ['com', 'net'] },
       noWhiteSpaces:0
   },
+    teacherEmail: {
+      type:String,
+      required:true,
+      minlength: 8,
+      maxlength: 32,
+      minDomainSegments: 2, 
+      tlds: { allow: ['com', 'net'] },
+      noWhiteSpaces:0
+},
     url: {
       type:String,
       required:true,

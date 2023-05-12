@@ -14,7 +14,7 @@ export const upload = async (request, response, next) => {
   const { email , url} = request.body
 
   //Busqueda por email en User
-    const user = await User.findOne({email:request.body.studentEmail}).populate([{
+    const user = await User.findOne({email:request.body.email}).populate([{
     path: "author", 
     select: "_id",
     strictPopulate: false

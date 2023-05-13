@@ -20,7 +20,7 @@ export const upload = async (request, response, next) => {
     strictPopulate: false
   }])
   if (!user) {
-    return response.status(400).json({
+    return response.status(404).json({
       error:"Email not register"
     })
   }

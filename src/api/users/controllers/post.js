@@ -15,12 +15,20 @@ export const register = async (request, response, next) => {
     return response.status(400).json({error:"Email Registered"})
   }
     
-  //Creación 
-    const user = new User(request.body);
+  //Lectura de datos
+  const { firstName , lastName , email , rol } = request.body;
 
+  //Creación 
+    const user = new User({
+      firstName: firstName.toUpperCase(),
+      lastName: lastName.toUpperCase(),
+      email, 
+      rol
+    });
+    
   try { 
     const Cluster0 = await user.save();
-    response.status(200).json({
+    response.status(201).json({
       saved:("Ok"),
       data: Cluster0
     })

@@ -7,12 +7,12 @@ const videoEdit = async (request, response, next) => {
   const {error} = SchemaUpdate.validate(request.body);
     if (error) { 
     return response.status(400).json({error: error.details[0].message}) 
-    }
-   
-  const video = (request.body);
+  }
+    
+  const { email , url} = request.body
  try { 
     const videoUpdate = await Videoproject.findByIdAndUpdate(id , request.body, {new:true});
-    response.status(200).json({
+    response.status(201).json({
        update:("Ok"),
        data: videoUpdate
     })

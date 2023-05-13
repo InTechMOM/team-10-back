@@ -8,11 +8,19 @@ definition: {
      version: '1.0.0',
     },
  },
+servers:[
+    {
+        url: "http://localhost:3000"
+    }
+],
 apis: [
     'app.js',
-    './src/api/users/controllers/post.js'
-],
+    "./src/api/users/controllers/post.js",
+]
 }
+
+
+
 
 export const openApiSpecification = swaggerJSDoc (swaggerOptions);
 

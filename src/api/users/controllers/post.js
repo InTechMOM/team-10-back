@@ -2,17 +2,46 @@ import User from "../../../models/user.js";
 import { schemaRegister } from "./validation.js";
 
 /**
+ * @openapi 
+ *  components:
+ *   schemas:
+ *    User:
+ *     type: object
+ *     properties:
+ *      firstName:
+ *        type: string
+ *      lastName:
+ *        type: string
+ *      email:
+ *        type: string
+ *      rol:
+ *        type: string
+ *     required:
+ *      - firstName
+ *      - lastName
+ *      - email
+ *      - rol
+ *     example:
+ *      firstName: nicole
+ *      lastName: castro
+ *      email: some@example.com
+ *      rol: Soy Docente
+ * 
+ */
+
+/**
  * @openapi
- * /users:
+ * /api/users/register:
  *  post:
- *   produces:
- *    application/json
- *   parameters:
- *    name: name
- *    in:
+ *   summary: Creation of users
+ *   tags: [User]
+ *   requestBody:
  *    required: true
- *    type: string
- *   description: Creation API for users
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       $ref: '#/components/schemas/User'
  *   responses:
  *    200:
  *     description: Bad request

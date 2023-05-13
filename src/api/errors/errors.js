@@ -1,4 +1,4 @@
-const middlewareErrors = (error, request, response) => {
+const middlewareErrors = (error, request, response, next) => {
 if (error) {
   response.status(400).json({ 
     status: "error",

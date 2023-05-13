@@ -3,7 +3,7 @@ const usersRouter = express.Router();
 
 import register from "../controllers/post.js";
 import login from "../controllers/login.js";
-import { userId , listUsers} from "../controllers/get.js";
+import { userId , allUsers} from "../controllers/get.js";
 import userEdit from "../controllers/put.js"; 
 import userDelete from "../controllers/delete.js";
 
@@ -14,7 +14,7 @@ usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 
 //Leer el usuario
-usersRouter.get("", listUsers); 
+usersRouter.get("", allUsers); 
 usersRouter.get("/:id", userId);
 
 //Actualizar el usuario

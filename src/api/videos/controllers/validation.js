@@ -23,5 +23,4 @@ export const SchemaUpdate =   Joi.object ({
         critical_thinking: Joi.number().min(0).max(5)
       },
     comment: Joi.string()
-    url: Joi.string().required().uri().regex(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i)
 })

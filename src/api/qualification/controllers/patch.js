@@ -13,8 +13,8 @@ const qualificationEdit = async (request, response, next) => {
  try { 
     const qualificationUpdate = await Videoproject.findByIdAndUpdate(id , request.body, {new:true});
     response.status(201).json({
-       update:("Ok"),
-       data: qualificationUpdate
+      qualified:("Ok"),
+      data: qualificationUpdate
     })
   } catch (error) { 
     next (error);

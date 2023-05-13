@@ -1,7 +1,6 @@
 import express from "express"; 
 import { port } from "./config/index.js"; 
 import "./config/dbConnection.js"; 
-import router from "./router.js"; 
 import bodyParser from "body-parser"; 
 import middlewareErrors from "./api/errors/errors.js";
 import usersRouter from "./api/users/routers/index.js";
@@ -14,7 +13,8 @@ const app = express();
 //API´s
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); 
-app.use("/api", router);
+import { lecturaServidor } from "./api/users/controllers/get.js";
+app.get("/", lecturaServidor);
 app.use("/api/users", usersRouter);
 app.use("/api/videos", videosRouter);
 app.use("/api/qualification", qualificationRouter);

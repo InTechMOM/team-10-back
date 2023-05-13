@@ -11,7 +11,7 @@ const videoprojectSchema = new Schema(
       minDomainSegments: 2, 
       tlds: { allow: ['com', 'net'] },
       noWhiteSpaces:0
-  },
+},
     url: {
       type:String,
       required:true,

@@ -1,24 +1,28 @@
 ###
 POST
-http://localhost:3000/api/videos/upload HTTP/1.1
+http://localhost:3000/api/upload HTTP/1.1
 Content-Type: application/json
 
 {
-  "email":"some@example.com",
-  "url":"www.youtube.com/watch?v=hWEOhHxHVRc&list=PLaN0VN0vnzJagadXLT8s7Amnf1i5MQSjv&index=15"
+  "teacherEmail":"som2@example.com",
+  "studentEmail":"some11@example.com",
+  "url":"https://www.youtube.com/watch?v=q43MB_EHm7A"
 }
 
 ###
 GET
-http://localhost:3000/api/videos/list HTTP/1.1
+http://localhost:3000/api/videos HTTP/1.1
 Content-Type: application/json
 
-{
-}
 
 ###
 GET 
 http://localhost:3000/api/videos/:id HTTP/1.1 (id del usuario)
+http://localhost:3000/api/videos/author HTTP/1.1 (id del usuario)
+
+{
+  "author": "6453fe8c86bab0e9c5aa4ae1"
+}
 
 ###
 PATCH

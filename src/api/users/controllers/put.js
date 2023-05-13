@@ -11,7 +11,7 @@ const userEdit = async (request, response, next) => {
    const user = User(request.body);
   try { 
      const userUpdate = await User.findByIdAndUpdate(id , request.body, {new:true});
-     response.status(200).json({
+     response.status(201).json({
         update:("Ok"),
         data: userUpdate
      })

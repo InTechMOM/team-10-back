@@ -11,19 +11,16 @@ export const upload = async (request, response, next) => {
   }
 
   //Lectura de datos
-  const {
-    email,
-    url
-  } = request.body
+  const { email , url} = request.body
 
   //Busqueda por email en User
-  const user = await User.findOne({email:request.body.email}).populate([{
+    const user = await User.findOne({email:request.body.email}).populate([{
     path: "author", 
     select: "_id",
     strictPopulate: false
   }])
   if (!user) {
-    return response.status(400).json({
+    return response.status(404).json({
       error:"Email not register"
     })
   }

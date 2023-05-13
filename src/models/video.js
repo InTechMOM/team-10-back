@@ -5,7 +5,6 @@ const videoprojectSchema = new Schema(
   {
     email: {
       type:String,
-      required:true,
       minlength: 8,
       maxlength: 32,
       minDomainSegments: 2, 
@@ -14,8 +13,7 @@ const videoprojectSchema = new Schema(
 },
     url: {
       type:String,
-      required:true,
-  },
+},
     author: {
       type: Schema.Types.ObjectId, 
       ref: "User" 

@@ -43,10 +43,10 @@ import { schemaRegister } from "./validation.js";
  *       type: object
  *       $ref: '#/components/schemas/User'
  *   responses:
- *    200:
- *     description: Bad request
+ *    201:
+ *     description: User Created
  *    400:
- *     description: User created
+ *     description: Bad Request
  */
 
 export const register = async (request, response, next) => { 

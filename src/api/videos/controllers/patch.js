@@ -5,29 +5,16 @@ import { SchemaUpload } from "./validation.js";
  * @openapi 
  *  components:
  *   schemas:
- *    videoprojectSchema:
+ *    videoprojectUpdateSchema:
  *     type: object
  *     properties:
  *      email:
  *        type: string
  *      url:
  *        type: string
- *      skills:
- *          communication:
- *            type: string
- *          collaboration:
- *            type: string
- *          creativity:
- *            type: string
- *          critical_thinking:
- *            type: string
- *      comment:
- *        type: string
  *     required:
- *      - email
  *      - url
  *     example:
- *      email: some@example.com
  *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
  */
 
@@ -36,7 +23,7 @@ import { SchemaUpload } from "./validation.js";
  * /api/videos/{id}:
  *  patch:
  *   summary: Update a video
- *   tags: [videoprojectSchema]
+ *   tags: [videoprojectUpdateSchema]
  *   parameters:
  *    - in: path
  *      name: id
@@ -50,7 +37,7 @@ import { SchemaUpload } from "./validation.js";
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/videoprojectSchema'
+ *       $ref: '#/components/schemas/videoprojectUpdateSchema'
  *   responses:
  *    201:
  *     description: Video Update

@@ -5,7 +5,7 @@ import {schemaUpdate} from "./validation.js";
  * @openapi 
  *  components:
  *   schemas:
- *    User:
+ *    UserUpate:
  *     type: object
  *     properties:
  *      firstName:
@@ -19,13 +19,9 @@ import {schemaUpdate} from "./validation.js";
  *     required:
  *      - firstName
  *      - lastName
- *      - email
- *      - rol
  *     example:
  *      firstName: nicole
  *      lastName: castro
- *      email: some@example.com
- *      rol: Soy Docente
  * 
  */
 
@@ -34,7 +30,7 @@ import {schemaUpdate} from "./validation.js";
  * /api/users/{id}:
  *  put:
  *   summary: Update a user
- *   tags: [User]
+ *   tags: [UserUpate]
  *   parameters:
  *    - in: path
  *      name: id
@@ -48,7 +44,7 @@ import {schemaUpdate} from "./validation.js";
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/User'
+ *       $ref: '#/components/schemas/UserUpate'
  *   responses:
  *    201:
  *     description: User Update

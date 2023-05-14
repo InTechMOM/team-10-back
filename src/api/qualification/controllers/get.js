@@ -43,22 +43,22 @@ import Videoproject from "../../../models/video.js";
  *   parameters:
  *    - in: query
  *      name: communication
- *      description: Query for skills
+ *      description: Query for score of communication
  *      schema:
  *        type: string
  *    - in: query
  *      name: collaboration
- *      description: Query for skills
+ *      description: Query for score of collaboration
  *      schema:
  *        type: string
   *    - in: query
  *      name: creativity
- *      description: Query for skills
+ *      description: Query for score of creativity
  *      schema:
  *        type: string
  *    - in: query
  *      name: critical_thinking
- *      description: Query for skills
+ *      description: Query for score of critical_thinking 
  *      schema:
  *        type: string
  *    - in: query

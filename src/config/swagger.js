@@ -16,6 +16,7 @@ servers:[
 apis: [
     'app.js',
     "./src/api/users/controllers/post.js",
+    "./src/api/users/controllers/login.js",
     "./src/api/users/controllers/get.js",
     "./src/api/users/controllers/put.js",
     "./src/api/users/controllers/delete.js",

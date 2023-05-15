@@ -47,6 +47,8 @@ import { schemaRegister } from "./validation.js";
  *     description: User Created
  *    400:
  *     description: Bad Request
+ *    500:
+ *     description: UnKwnown Error 
  */
 
 export const register = async (request, response, next) => { 

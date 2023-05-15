@@ -5,13 +5,9 @@ import { SchemaUpdate } from "../../videos/controllers/validation.js";
  * @openapi 
  *  components:
  *   schemas:
- *    videoQualifiedsSchema:
+ *    videoQualifiedSchema:
  *     type: object
  *     properties:
- *      email:
- *        type: string
- *      url:
- *        type: string
  *      skills:
  *          communication:
  *            type: string
@@ -35,12 +31,13 @@ import { SchemaUpdate } from "../../videos/controllers/validation.js";
  *      comment: Buen trabajo
  */
 
+
 /**
  * @openapi
  * /api/qualification/{id}:
  *  patch:
  *   summary: Video qualified
- *   tags: [videoQualified]
+ *   tags: [videoQualifiedSchema]
  *   parameters:
  *    - in: path
  *      name: id
@@ -54,12 +51,14 @@ import { SchemaUpdate } from "../../videos/controllers/validation.js";
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/videoQualifiedsSchema'
+ *       $ref: '#/components/schemas/videoQualifiedSchema'
  *   responses:
  *    201:
  *     description: Video qualified
  *    400:
  *     description: Something went wrong
+ *    404:
+ *     description: Video Not Found
  *    500:
  *     description: UnKwnown Error 
  */
@@ -72,16 +71,21 @@ const qualificationEdit = async (request, response, next) => {
     return response.status(400).json({error: error.details[0].message}) 
     }
    
-  const qualification = (request.body);
+  const { skills , comment  } = (request.body);
  try { 
     const qualificationUpdate = await Videoproject.findByIdAndUpdate(id , request.body, {new:true});
-    response.status(201).json({
+    if (!qualificationUpdate) {
+      return response.status(404).json({
+        message:"Video Not Found"})
+      }
+      return response.status(201).json({
       qualified:("Ok"),
       data: qualificationUpdate
-    })
-  } catch (error) { 
-    next (error);
-  };
+      })
+    } catch (error) { 
+      next (error);
+    };
 }
+
 
 export default qualificationEdit;

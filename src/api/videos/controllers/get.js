@@ -68,7 +68,7 @@ import Videoproject from "../../../models/video.js"
  * @openapi
  * /api/videos/{id}:
  *  get:
- *   summary: Return a video
+ *   summary: Return a video for id user
  *   tags: [videoprojectSchema]
  *   parameters:
  *    - in: path

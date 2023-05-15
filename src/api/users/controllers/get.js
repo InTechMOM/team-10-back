@@ -110,8 +110,8 @@ export const allUsers = async (request, response, next) => {
   try  {
     const { firstName , lastName, email , rol } = request.query;
     const filters = { 
-      ...firstName && { firstName },
-      ...lastName && { lastName },
+      ...firstName && { firstName:{ $regex: firstName, $options:'i' } },
+      ...lastName && { lastName:{ $regex: lastName, $options:'i' } },
       ...email && { email },
       ...rol && { rol }
     }; 

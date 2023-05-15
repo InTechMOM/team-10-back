@@ -24,7 +24,6 @@ apis: [
     "./src/api/videos/controllers/get.js",
     "./src/api/videos/controllers/patch.js",
     "./src/api/videos/controllers/delete.js",
-    "./src/api/qualification/controllers/get.js",
     "./src/api/qualification/controllers/patch.js"
 ]
 }

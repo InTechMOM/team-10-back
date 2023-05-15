@@ -6,6 +6,5 @@ import allQualification from "../controllers/get.js";
 
 
 qualificationRouter.patch("/:id", qualificationEdit);
-qualificationRouter.get("", allQualification);
 
 export default qualificationRouter;

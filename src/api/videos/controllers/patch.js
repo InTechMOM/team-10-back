@@ -9,9 +9,12 @@ const videoEdit = async (request, response, next) => {
     return response.status(400).json({error: error.details[0].message}) 
   }
     
-  const { email , url} = request.body
+  const { url , firstNameTeacher , lastNameTeacher } = request.body
  try { 
-    const videoUpdate = await Videoproject.findByIdAndUpdate(id , request.body, {new:true});
+    const videoUpdate = await Videoproject.findByIdAndUpdate(id , { 
+      firstNameTeacher:request.body.firstNameTeacher.toUpperCase(), 
+      lastNameTeacher:request.body.lastNameTeacher.toUpperCase(),
+      url:request.body.url}, {new:true});
     response.status(201).json({
        update:("Ok"),
        data: videoUpdate

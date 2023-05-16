@@ -1,7 +1,7 @@
 import User from "./user.js";
 import { Schema, model} from "mongoose";
 
-const videoprojectSchema = new Schema(
+const videoProjectSchema = new Schema(
 {
     email: {
       type:String,
@@ -16,25 +16,19 @@ const videoprojectSchema = new Schema(
       type:String,
       required:true
 },
-    firstNameTeacher: {
+    nameTeacher: {
       type:String,
       alphanum:true,
       minlength:[3,"La cadena es más corta de la requerida"],
-      maxlength:32,
-      noWhiteSpaces:0
+      maxlength:64,
+      noWhiteSpaces:4,
+      unique: true 
 },
-    lastNameTeacher: {
-      type:String,
-      alphanum:true, 
-      minlength:[3,"La cadena es más corta de la requerida"],
-      maxlength:32,
-      noWhiteSpaces:0
-},
-    author: {
+    authorId: {
       type: Schema.Types.ObjectId, 
       ref: "User" 
   }, 
-    teacher: {
+    teacherId: {
       type: Schema.Types.ObjectId, 
       ref: "User" 
 }, 
@@ -44,4 +38,4 @@ const videoprojectSchema = new Schema(
   }
 )
 
-export default model("Videoproject", videoprojectSchema);
+export default model("Videoproject", videoProjectSchema);

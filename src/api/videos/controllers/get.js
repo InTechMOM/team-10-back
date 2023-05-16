@@ -2,8 +2,9 @@ import User from "../../../models/user.js";
 import VideoProject from "../../../models/video.js"
 
 //busqueda de videos con :id del usuario
-try  {
-export const videosId = async (request, response) => { 
+
+export const videosId = async (request, response) => {
+  try  {
   const id = request.params.id
   const userVideoId = await VideoProject.findOne ({ authorId: id }) 
   if (!userVideoId) 
@@ -11,10 +12,14 @@ export const videosId = async (request, response) => {
       message:"User has not uploaded videos"})
   return response.status(200).json({
     data: userVideoId})
+  } catch (error) { 
+    next (error);
+  };
 }
 
 //busqueda de todos los videos cargados (listar), con filtros
 export const allVideos = async (request, response, next) => { 
+  try  {
     const { email , url , nameTeacher } = request.query;
     const filters = { 
       ...email && { email },

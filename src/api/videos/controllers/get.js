@@ -15,10 +15,12 @@ export const videosId = async (request, response) => {
 //busqueda de todos los videos cargados (listar), con filtros
 export const allVideos = async (request, response, next) => { 
   try  {
-    const { email , url } = request.query;
+    const { email , url , firstNameTeacher , lastNameTeacher } = request.query;
     const filters = { 
       ...email && { email },
-      ...url && { url }
+      ...url && { url },
+      ...firstNameTeacher  && { firstNameTeacher },
+      ...lastNameTeacher  && { lastNameTeacher },
     }; //el operador lo vuelve oleano y si es true {} lo usa sino no
     const arrayVideos = await Videoproject.find(filters); 
     return response.status(200).json({ 

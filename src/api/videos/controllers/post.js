@@ -11,25 +11,45 @@ export const upload = async (request, response, next) => {
   }
 
   //Lectura de datos
-  const { email , url} = request.body
+  const { email , url , firstNameTeacher , lastNameTeacher } = request.body
 
-  //Busqueda por email en User
+  //Busqueda por email del estudiante en User
     const user = await User.findOne({email:request.body.email}).populate([{
     path: "author", 
     select: "_id",
     strictPopulate: false
   }])
+
   if (!user) {
     return response.status(404).json({
       error:"Email not register"
     })
   }
 
+  //Busqueda por nombre del docente en User
+    const teacher = await User.findOne({ firstName:{ $regex: firstNameTeacher, $options:'i' } , lastName:{ $regex: lastNameTeacher, $options:'i' } , rol:"Soy Docente" }).populate([{
+    path: "teacher", 
+    select: "_id",
+    strictPopulate: false
+  }])
+
+  if (!teacher) {
+    return response.status(404).json({
+      error:"Teacher not register"
+    })
+  }
+
+  //Busqueda por nombre de docente y rol //preguntar que sí se rquiere para lista desplegable puesto el query de rl ya ls filtra?? los body necesaris?
+  //como entran los dats?
+
   //Creación del video
   const newVideo = new Videoproject ({
     email,
     url,
-    author: user._id
+    firstNameTeacher:firstNameTeacher.toUpperCase(),
+    lastNameTeacher:lastNameTeacher.toUpperCase(),
+    author: user._id,
+    teacher: teacher._id
   })
 
   //Guardado de video

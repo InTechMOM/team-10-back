@@ -2,21 +2,14 @@ import { Schema, model} from "mongoose";
 
 let posibles_roles=["Soy Estudiante", "Soy Docente"]
 const userSchema = new Schema({
-  firstName: {
+  name: {
       type:String,
       required:true,
       alphanum:true,
       minlength:[3,"La cadena es más corta de la requerida"],
-      maxlength:32,
-      noWhiteSpaces:0
-  },
-  lastName: {
-      type:String,
-      required:true,
-      alphanum:true, 
-      minlength:3,
-      maxlength:32,
-      noWhiteSpaces:0
+      maxlength:64,
+      noWhiteSpaces:4,
+      unique: true 
   },
   email: {
     type:String,

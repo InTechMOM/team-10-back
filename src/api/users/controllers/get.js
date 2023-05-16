@@ -8,10 +8,9 @@ export const serverRead = (request, response, error) => {
 //Listar
 export const allUsers = async (request, response, next) => { 
   try  {
-    const { firstName , lastName, email , rol } = request.query;
+    const { name, email , rol } = request.query;
     const filters = { 
-      ...firstName && { firstName },
-      ...lastName && { lastName },
+      ...name && { name },
       ...email && { email },
       ...rol && { rol }
     }; 

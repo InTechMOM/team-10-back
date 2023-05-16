@@ -16,12 +16,11 @@ export const register = async (request, response, next) => {
   }
     
   //Lectura de datos
-  const { firstName , lastName , email , rol } = request.body;
+  const { Name , email , rol } = request.body;
 
   //Creación 
     const user = new User({
-      firstName: firstName.toUpperCase(),
-      lastName: lastName.toUpperCase(),
+      name: name.toUpperCase(),
       email, 
       rol
     });

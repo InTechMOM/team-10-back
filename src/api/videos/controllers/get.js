@@ -1,8 +1,7 @@
 import User from "../../../models/user.js";
 import VideoProject from "../../../models/video.js"
 
-//busqueda de videos con :id del usuario
-
+//busqueda de videos con :id del usuario (author)
 export const videosId = async (request, response) => {
   try  {
   const id = request.params.id
@@ -20,15 +19,18 @@ export const videosId = async (request, response) => {
 //busqueda de todos los videos cargados (listar), con filtros
 export const allVideos = async (request, response, next) => { 
   try  {
-    const { email , url , nameTeacher } = request.query;
-    const filters = { 
-      ...email && { email },
-      ...url && { url },
-      ...nameTeacher  && { nameTeacher },
-    }; 
-    const arrayVideos = await VideoProject.find(filters); 
-    return response.status(200).json({ 
-      list: arrayVideos})
+  const { email , url , nameTeacher } = request.query;
+  const filters = { 
+    ...email && { email },
+    ...url && { url },
+    ...nameTeacher  && { nameTeacher:nameTeacher.toUpperCase() },
+  }; 
+  const arrayVideos = await VideoProject.find(filters); 
+  if (!arrayVideos)
+    return response.status(404).json({
+      message:"Video Not Found"})
+  return response.status(200).json({ 
+    list: arrayVideos})
   } catch (error) { 
     next (error);
   };

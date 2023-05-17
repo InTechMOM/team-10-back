@@ -8,16 +8,21 @@ const videoEdit = async (request, response, next) => {
     if (error) { 
     return response.status(400).json({error: error.details[0].message}) 
   }
-    
+  
+  //Busqueda por Id del video
   const { url , nameTeacher } = request.body
  try { 
     const videoUpdate = await VideoProject.findByIdAndUpdate(id , { 
-      nameTeacher:nameTeacher.toUpperCase(), 
-      url:url}, {new:true});
-    response.status(201).json({
+      url:url,
+      nameTeacher:nameTeacher.toUpperCase() }, {new:true});
+    if (!videoUpdate) {
+      return response.status(404).json({
+        message:"Video Not Found"})
+        }
+      return response.status(201).json({
        update:("Ok"),
        data: videoUpdate
-    })
+      })
   } catch (error) { 
     next (error);
   };

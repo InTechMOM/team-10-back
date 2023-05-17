@@ -4,7 +4,7 @@ import { SchemaUpload } from "./validation.js";
 
 export const upload = async (request, response, next) => {
   
-  try {
+try {
   //Validación
   const {error} = SchemaUpload.validate(request.body);
   if (error) { 
@@ -15,26 +15,26 @@ export const upload = async (request, response, next) => {
   const { email , url , nameTeacher } = request.body
 
   //Busqueda por email del estudiante en User
-    const user = await User.findOne({email}).populate([{
+    const userId = await User.findOne({email}).populate([{
     path: "authorId", 
     select: "_id",
     strictPopulate: false
   }])
 
-  if (!user) {
+  if (!userId) {
     return response.status(404).json({
       error:"Email not register"
     })
   }
 
   //Busqueda por nombre del docente en User
-    const teacher = await User.findOne({ name:{ nameTeacher, $options:'i' } , rol:"Soy Docente" }).populate([{
+    const teacherId = await User.findOne({name:nameTeacher.toUpperCase(), rol:"Soy Docente" }).populate([{
     path: "teacherId", 
     select: "_id",
     strictPopulate: false
   }])
 
-  if (!teacher) {
+  if (!teacherId) {
     return response.status(404).json({
       error:"Teacher not register"
     })
@@ -50,12 +50,12 @@ export const upload = async (request, response, next) => {
   })
 
   //Guardado de video
-  
     const saveVideo = await newVideo.save()
     response.status(200).json({
       upload:("Ok"),
       data: saveVideo
     })
+
   } catch (error) { 
     next (error)
   }    

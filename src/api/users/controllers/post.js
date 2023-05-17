@@ -9,14 +9,22 @@ export const register = async (request, response, next) => {
   return response.status(400).json({error: error.details[0].message}) 
   }
 
+  try {
+
+  //Lectura de datos
+  const { name , email , rol } = request.body;
+
+  //Nombre de teacher unico
+  const nameRegistered = await User.findOne({ name });
+  if (nameRegistered) {
+  return response.status(400).json({error:"Name Registered"})
+  }
+
   //correo unico
-  const emailRegistered = await User.findOne({ email:request.body.email });
+  const emailRegistered = await User.findOne({ email });
   if (emailRegistered) {
     return response.status(400).json({error:"Email Registered"})
   }
-    
-  //Lectura de datos
-  const { Name , email , rol } = request.body;
 
   //Creación 
     const user = new User({
@@ -25,11 +33,10 @@ export const register = async (request, response, next) => {
       rol
     });
     
-  try { 
-    const Cluster0 = await user.save();
+    const userCreated = await user.save();
     response.status(201).json({
       saved:("Ok"),
-      data: Cluster0
+      data: userCreated
     })
 
   } catch (error) { 

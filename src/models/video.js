@@ -18,7 +18,6 @@ const videoProjectSchema = new Schema(
 },
     nameTeacher: {
       type:String,
-      alphanum:true,
       minlength:[3,"La cadena es más corta de la requerida"],
       maxlength:64,
       noWhiteSpaces:4,

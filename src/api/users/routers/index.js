@@ -7,21 +7,21 @@ import { userId , allUsers} from "../controllers/get.js";
 import userEdit from "../controllers/put.js"; 
 import userDelete from "../controllers/delete.js";
 
-//user
+//User
 
 //Crear el usuario
 usersRouter.post("/register", register);
 usersRouter.post("/login", login);
 
 //Leer el usuario
-usersRouter.get("", allUsers); 
-usersRouter.get("/:id", userId);
+usersRouter.get("/users", allUsers); 
+usersRouter.get("/users/:id", userId);
 
 //Actualizar el usuario
-usersRouter.put("/:id", userEdit);
+usersRouter.put("users/:id", userEdit);
 
 //Eliminar el usuario
-usersRouter.delete("/:id", userDelete);
+usersRouter.delete("users/:id", userDelete);
 
 
 export default usersRouter;

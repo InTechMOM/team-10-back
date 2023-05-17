@@ -1,4 +1,4 @@
-import Videoproject from "../../../models/video.js";
+import VideoProject from "../../../models/video.js";
 
 const allQualification = async (request, response, next) => { 
   try  {
@@ -7,7 +7,7 @@ const allQualification = async (request, response, next) => {
       ...skills && { skills },   
       ...comment && { comment }
     }; 
-    const arrayQualification = await Videoproject.find(filters); 
+    const arrayQualification = await VideoProject.find(filters); 
     return response.status(200).json({ 
       list: arrayQualification})
   } catch (error) { 

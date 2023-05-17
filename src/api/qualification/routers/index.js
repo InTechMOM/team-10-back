@@ -5,7 +5,7 @@ import qualificationEdit from "../controllers/patch.js";
 import allQualification from "../controllers/get.js";
 
 
-qualificationRouter.patch("/:id", qualificationEdit);
-qualificationRouter.get("", allQualification);
+qualificationRouter.patch("qualification/:id", qualificationEdit);
+qualificationRouter.get("/qualification", allQualification);
 
 export default qualificationRouter;

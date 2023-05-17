@@ -3,6 +3,7 @@ const qualificationRouter = express.Router();
 
 import qualificationEdit from "../controllers/patch.js";
 
-qualificationRouter.patch("/:id", qualificationEdit);
+qualificationRouter.patch("qualification/:id", qualificationEdit);
+qualificationRouter.get("/qualification", allQualification);
 
 export default qualificationRouter;

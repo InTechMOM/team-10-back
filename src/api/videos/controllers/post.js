@@ -1,5 +1,5 @@
 import User from "../../../models/user.js";
-import Videoproject from "../../../models/video.js";
+import VideoProject from "../../../models/video.js";
 import { SchemaUpload } from "./validation.js";
 
 /**
@@ -55,7 +55,8 @@ import { SchemaUpload } from "./validation.js";
  */
 
 export const upload = async (request, response, next) => {
-
+  
+try {
   //Validación
   const {error} = SchemaUpload.validate(request.body);
   if (error) { 
@@ -63,34 +64,50 @@ export const upload = async (request, response, next) => {
   }
 
   //Lectura de datos
-  const { email , url} = request.body
+  const { email , url , nameTeacher } = request.body
 
-  //Busqueda por email en User
-    const user = await User.findOne({email:request.body.email}).populate([{
-    path: "author", 
+  //Busqueda por email del estudiante en User
+    const userId = await User.findOne({email}).populate([{
+    path: "authorId", 
     select: "_id",
     strictPopulate: false
   }])
-  if (!user) {
+
+  if (!userId) {
     return response.status(404).json({
       error:"Email not register"
     })
   }
 
+  //Busqueda por nombre del docente en User
+    const teacherId = await User.findOne({name:nameTeacher.toUpperCase(), rol:"Soy Docente" }).populate([{
+    path: "teacherId", 
+    select: "_id",
+    strictPopulate: false
+  }])
+
+  if (!teacherId) {
+    return response.status(404).json({
+      error:"Teacher not register"
+    })
+  }
+
   //Creación del video
-  const newVideo = new Videoproject ({
+  const newVideo = new VideoProject ({
     email,
     url,
-    author: user._id
+    nameTeacher:nameTeacher.toUpperCase(),
+    authorId: userId._id,
+    teacherId: teacherId._id
   })
 
   //Guardado de video
-  try {
     const saveVideo = await newVideo.save()
     response.status(201).json({
       upload:("Ok"),
       data: saveVideo
     })
+
   } catch (error) { 
     next (error)
   }    

@@ -1,4 +1,4 @@
-import Videoproject from "../../../models/video.js";
+import VideoProject from "../../../models/video.js";
 
 /**
  * @openapi 
@@ -61,14 +61,15 @@ import Videoproject from "../../../models/video.js";
 const videoDelete = async (request, response, next) => { 
   const id = request.params.id
   try { 
-     const videoDelete = await Videoproject.findByIdAndDelete(id);
+     const videoDelete = await VideoProject.findByIdAndDelete(id);
      if (!videoDelete) {
       return response.status(404).json({
         message:"Video Not Found"})
       }
       return response.status(200).json({
-        update:("Ok"),
-       data: videoDelete})
+       delete:("Ok"),
+       data: videoDelete
+     })
    } catch (error) { 
      next (error);
    };

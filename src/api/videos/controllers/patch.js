@@ -57,18 +57,23 @@ const videoEdit = async (request, response, next) => {
     if (error) { 
     return response.status(400).json({error: error.details[0].message}) 
   }
-    
-  const { url } = request.body
+  
+  //Busqueda por Id del video
+  const { url , nameTeacher } = request.body
  try { 
-    const videoUpdate = await Videoproject.findByIdAndUpdate(id , request.body, {new:true});
+    const videoUpdate = await VideoProject.findByIdAndUpdate(id , { 
+      url:url,
+      nameTeacher:nameTeacher.toUpperCase() 
+    }, {new:true});
     if (!videoUpdate) {
       return response.status(404).json({
         message:"Video Not Found"})
-      }
+        }
       return response.status(201).json({
-        update:("Ok"),
-       data: videoUpdate})
-   } catch (error) { 
+       update:("Ok"),
+       data: videoUpdate
+      })
+  } catch (error) { 
     next (error);
   };
 }

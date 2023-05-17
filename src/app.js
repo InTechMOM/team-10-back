@@ -19,9 +19,9 @@ app.use(bodyParser.json());
 app.get("/", serverRead);
 app.use("/docs", swaggerUi.serve);
 app.get("/docs", swaggerUi.setup(openApiSpecification));
-app.use("/api/users", usersRouter);
-app.use("/api/videos", videosRouter);
-app.use("/api/qualification", qualificationRouter);
+app.use("/api", usersRouter);
+app.use("/api", videosRouter);
+app.use("/api", qualificationRouter);
 
 //Errores
 app.use(middlewareErrors);

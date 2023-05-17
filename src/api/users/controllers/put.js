@@ -56,23 +56,26 @@ import {schemaUpdate} from "./validation.js";
  *     description: UnKwnown Error 
  */
 
+//Validación de datos
 const userEdit = async (request, response, next) => { 
+  try { 
    const id = request.params.id
    const {error} = schemaUpdate.validate(request.body);
      if (error) { 
      return response.status(400).json({error: error.details[0].message}) 
+     }
+    
+   const { name } = request.body;
+
+   const userUpdate = await User.findByIdAndUpdate(id , {name:name.toUpperCase()} , {new:true});
+   if (!userUpdate) {
+    return response.status(404).json({
+      message:"User Not Found"})
     }
-  
-  try { 
-     const userUpdate = await User.findByIdAndUpdate(id , { firstName:request.body.firstName.toUpperCase() , lastName:request.body.lastName.toUpperCase() }, {new:true});
-     if (!userUpdate) {
-      return response.status(404).json({
-        message:"User Not Found"})
-      }
-      return response.status(201).json({
-        update:("Ok"),
-        data: userUpdate
-     })
+    return response.status(201).json({
+      update:("Ok"),
+      data: userUpdate
+    })
    } catch (error) { 
      next (error);
    };

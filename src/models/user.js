@@ -2,21 +2,13 @@ import { Schema, model} from "mongoose";
 
 let posibles_roles=["Soy Estudiante", "Soy Docente"]
 const userSchema = new Schema({
-  firstName: {
-      type:String,
-      required:true,
-      alphanum:true,
-      minlength:[3,"La cadena es más corta de la requerida"],
-      maxlength:32,
-      noWhiteSpaces:0
-  },
-  lastName: {
-      type:String,
-      required:true,
-      alphanum:true, 
-      minlength:3,
-      maxlength:32,
-      noWhiteSpaces:0
+  name: {
+    type:String,
+    required:true,
+    minlength:[3,"La cadena es más corta de la requerida"],
+    maxlength:64,
+    noWhiteSpaces:4,
+    unique: true 
   },
   email: {
     type:String,
@@ -34,7 +26,7 @@ const userSchema = new Schema({
     enum:{
     values:posibles_roles,message:"Opción no valida"}
 },
-  Date: { 
+  date: { 
     type: Date,
     default: new Date()
 }

@@ -1,8 +1,8 @@
 import User from "./user.js";
 import { Schema, model} from "mongoose";
 
-const videoprojectSchema = new Schema(
-  {
+const videoProjectSchema = new Schema(
+{
     email: {
       type:String,
       required:true,
@@ -11,11 +11,26 @@ const videoprojectSchema = new Schema(
       minDomainSegments: 2, 
       tlds: { allow: ['com', 'net'] },
       noWhiteSpaces:0
-},
+    },
     url: {
-      type:String,s
+      type:String,
       required:true,
-  },
+    },
+    nameTeacher: {
+      type:String,
+      minlength:[3,"La cadena es más corta de la requerida"],
+      maxlength:64,
+      noWhiteSpaces:4,
+      unique: true 
+    },
+    authorId: {
+      type: Schema.Types.ObjectId, 
+      ref: "User" 
+    }, 
+    teacherId: {
+      type: Schema.Types.ObjectId, 
+      ref: "User" 
+    },
     skills: {
       communication: {
       type:Number,
@@ -40,15 +55,11 @@ const videoprojectSchema = new Schema(
     },
     comment: {
       type:String
-    },
-    author: {
-      type: Schema.Types.ObjectId, 
-      ref: "User" 
-    }, 
-  },  
-  { 
-    timestamps: true,    
-  }
+    },   
+ },
+{ 
+  timestamps: true,    
+}
 )
 
-export default model("Videoproject", videoprojectSchema);
+export default model("Videoproject", videoProjectSchema);

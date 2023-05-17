@@ -1,28 +1,36 @@
 import User from "../../../models/user.js";
-import Videoproject from "../../../models/video.js"
+import VideoProject from "../../../models/video.js"
 
-//busqueda de videos con :id del usuario
-export const videosId = async (request, response) => { 
+//busqueda de videos con :id del usuario (author)
+export const videosId = async (request, response) => {
+  try  {
   const id = request.params.id
-  const uservideoid = await Videoproject.findOne ({ author: id }) 
-  if (!uservideoid) 
+  const userVideoId = await VideoProject.findOne ({ authorId: id }) 
+  if (!userVideoId) 
     return response.status(404).json({
       message:"User has not uploaded videos"})
   return response.status(200).json({
-    data: uservideoid})
+    data: userVideoId})
+  } catch (error) { 
+    next (error);
+  };
 }
 
 //busqueda de todos los videos cargados (listar), con filtros
 export const allVideos = async (request, response, next) => { 
   try  {
-    const { email , url } = request.query;
-    const filters = { 
-      ...email && { email },
-      ...url && { url }
-    }; //el operador lo vuelve oleano y si es true {} lo usa sino no
-    const arrayVideos = await Videoproject.find(filters); 
-    return response.status(200).json({ 
-      list: arrayVideos})
+  const { email , url , nameTeacher } = request.query;
+  const filters = { 
+    ...email && { email },
+    ...url && { url },
+    ...nameTeacher  && { nameTeacher:nameTeacher.toUpperCase() },
+  }; 
+  const arrayVideos = await VideoProject.find(filters); 
+  if (!arrayVideos)
+    return response.status(404).json({
+      message:"Video Not Found"})
+  return response.status(200).json({ 
+    list: arrayVideos})
   } catch (error) { 
     next (error);
   };

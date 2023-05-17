@@ -16,7 +16,7 @@ const videoProjectSchema = new Schema(
       type:String,
       required:true,
       unique: true 
-    },
+},
     nameTeacher: {
       type:String,
       minlength:[3,"La cadena es más corta de la requerida"],

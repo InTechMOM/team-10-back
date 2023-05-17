@@ -128,9 +128,6 @@ export const allVideos = async (request, response, next) => {
     ...nameTeacher  && { nameTeacher:nameTeacher.toUpperCase() },
   }; 
   const arrayVideos = await VideoProject.find(filters); 
-  if (!arrayVideos)
-    return response.status(404).json({
-      message:"Video Not Found"})
   return response.status(200).json({ 
     list: arrayVideos})
   } catch (error) { 

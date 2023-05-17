@@ -67,8 +67,7 @@ const videoEdit = async (request, response, next) => {
  try { 
     const videoUpdate = await VideoProject.findByIdAndUpdate(id , { 
       url:url,
-      ...nameTeacher && {nameTeacher:nameTeacher.toUpperCase()}
-    }, {new:true});
+      ...nameTeacher && {nameTeacher:nameTeacher.toUpperCase()}}, {new:true});
     if (!videoUpdate) {
       return response.status(404).json({
         message:"Video Not Found"})

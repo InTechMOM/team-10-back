@@ -15,13 +15,13 @@ const videoProjectSchema = new Schema(
     url: {
       type:String,
       required:true,
+      unique: true 
     },
     nameTeacher: {
       type:String,
       minlength:[3,"La cadena es más corta de la requerida"],
       maxlength:64,
       noWhiteSpaces:4,
-      unique: true 
     },
     authorId: {
       type: Schema.Types.ObjectId, 

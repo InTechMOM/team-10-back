@@ -71,7 +71,7 @@ try {
   const { email , url , nameTeacher } = request.body
 
   //Busqueda por email del estudiante en User
-    const userId = await User.findOne({email}).populate([{
+    const userId = await User.findOne({email, rol:"Soy Estudiante"}).populate([{
     path: "authorId", 
     select: "_id",
     strictPopulate: false
@@ -79,7 +79,7 @@ try {
 
   if (!userId) {
     return response.status(404).json({
-      error:"Email not register"
+      error:" Unregistered student email "
     })
   }
 

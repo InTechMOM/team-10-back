@@ -67,7 +67,7 @@ const videoEdit = async (request, response, next) => {
  try { 
     const videoUpdate = await VideoProject.findByIdAndUpdate(id , { 
       url:url,
-      nameTeacher:nameTeacher.toUpperCase() 
+      ...nameTeacher && {nameTeacher:nameTeacher.toUpperCase()}
     }, {new:true});
     if (!videoUpdate) {
       return response.status(404).json({

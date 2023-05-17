@@ -13,7 +13,7 @@ const videoprojectSchema = new Schema(
       noWhiteSpaces:0
 },
     url: {
-      type:String,s
+      type:String,
       required:true,
   },
     skills: {

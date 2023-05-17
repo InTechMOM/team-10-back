@@ -32,10 +32,6 @@ export const userId = async (request, response) => {
   try  {
    const id = request.params.id
    const userId = await User.findById(id)
-   if (!userId) {
-    return response.status(404).json({
-      message:"User Not Found"})
-    }
     return response.status(200).json({
       data: userId})
   } catch (error) { 

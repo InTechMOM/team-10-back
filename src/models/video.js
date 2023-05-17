@@ -14,7 +14,8 @@ const videoProjectSchema = new Schema(
 },
     url: {
       type:String,
-      required:true
+      required:true,
+      unique: true 
 },
     nameTeacher: {
       type:String,

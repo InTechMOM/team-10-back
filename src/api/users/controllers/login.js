@@ -10,9 +10,9 @@ const login = async (request, response, next) => {
   };
 
   //Acceso
-  const userVal = await User.findOne({ email:request.body.email , rol:request.body.rol }) 
-  if (!userVal) return response.status(400).json({error: "Unauthorized Access"});
-   response.status(200).json("Welcome " + userVal.name)
+  const userValidation = await User.findOne({ email:request.body.email , rol:request.body.rol }) 
+  if (!userValidation) return response.status(400).json({error: "Unauthorized Access"});
+   response.status(200).json("Welcome " + userValidation.name)
 
  next (error);
 }

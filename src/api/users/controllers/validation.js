@@ -7,8 +7,7 @@ const UserRole = {
 
 // Esquema Registro
 export const schemaRegister = Joi.object ({
-  name: Joi.string().uppercase().required().alphanum().min(3).max(32).trim().strict(),
-  lastname: Joi.string().uppercase().required().alphanum().min(3).max(32).trim().strict(), 
+  name: Joi.string().required().min(3).max(64).trim().strict(),
   email: Joi.string().required().min(8).max(32).email({minDomainSegments:2, tlds:{allow:["com","net"]}}),
   rol: Joi.string().required().valid(UserRole.teacher, UserRole.student)
 })
@@ -21,6 +20,5 @@ export const schemaLogin = Joi.object ({
 
 // Esquema Modificación (se dejan opcionales)
 export const schemaUpdate = Joi.object ({
-  name: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(),
-  lastname: Joi.string().uppercase().alphanum().min(3).max(32).trim().strict(), 
+  name: Joi.string().required().min(3).max(64).trim().strict(),
 })

@@ -12,25 +12,20 @@ export const serverRead = (request, response, error) => {
  *    User:
  *     type: object
  *     properties:
- *      firstName:
- *        type: string
- *      lastName:
+ *      name:
  *        type: string
  *      email:
  *        type: string
  *      rol:
  *        type: string
  *     required:
- *      - firstName
- *      - lastName
+ *      - name
  *      - email
  *      - rol
  *     example:
- *      firstName: nicole
- *      lastName: castro
+ *      name: Samuel Reyes
  *      email: some@example.com
  *      rol: Soy Docente
- * 
  */
 
 /**
@@ -41,13 +36,8 @@ export const serverRead = (request, response, error) => {
  *   tags: [User]
  *   parameters:
  *    - in: query
- *      name: firstName
- *      description: Query for firstName
- *      schema:
- *        type: string
- *    - in: query
- *      name: lastName
- *      description: Query for lastName
+ *      name: name
+ *      description: Query for name
  *      schema:
  *        type: string
  *    - in: query
@@ -107,13 +97,15 @@ export const serverRead = (request, response, error) => {
 
 //Listar
 export const allUsers = async (request, response, next) => { 
-  try  {
+  
     const { name, email , rol } = request.query;
     const filters = { 
       ...name && { name:name.toUpperCase()},
       ...email && { email },
       ...rol && { rol }
     }; 
+
+    try  {
     const arrayUsers = await User.find(filters); 
     if (!arrayUsers) {
       return response.status(404).json({ 

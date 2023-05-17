@@ -6,12 +6,14 @@ import { SchemaUpload } from "./validation.js";
  * @openapi 
  *  components:
  *   schemas:
- *    videoprojectSchema:
+ *    VideoprojectSchema:
  *     type: object
  *     properties:
  *      email:
  *        type: string
  *      url:
+ *        type: string
+ *      nameTeacher:
  *        type: string
  *      skills:
  *          communication:
@@ -27,24 +29,26 @@ import { SchemaUpload } from "./validation.js";
  *     required:
  *      - email
  *      - url
+ *      - nameTeacher
  *     example:
- *      email: some@example.com
+ *      email: some1@example.com
  *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
+ *      nameTeacher: Nicole Castro
  */
 
 /**
  * @openapi
- * /api/videos/upload:
+ * /api/upload:
  *  post:
  *   summary: Upload Video
- *   tags: [videoprojectSchema]
+ *   tags: [Videos]
  *   requestBody:
  *    required: true
  *    content:
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/videoprojectSchema'
+ *       $ref: '#/components/schemas/VideoprojectSchema'
  *   responses:
  *    201:
  *     description: Video Created

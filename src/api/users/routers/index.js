@@ -18,10 +18,10 @@ usersRouter.get("/users", allUsers);
 usersRouter.get("/users/:id", userId);
 
 //Actualizar el usuario
-usersRouter.put("users/:id", userEdit);
+usersRouter.put("/users/:id", userEdit);
 
 //Eliminar el usuario
-usersRouter.delete("users/:id", userDelete);
+usersRouter.delete("/users/:id", userDelete);
 
 
 export default usersRouter;

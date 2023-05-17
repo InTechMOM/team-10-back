@@ -16,9 +16,9 @@ videosRouter.get("/videos", allVideos);
 videosRouter.get("/videos/:id", videosId);
 
 //Modificar videos
-videosRouter.patch("videos/:id", videoEdit);
+videosRouter.patch("/videos/:id", videoEdit);
 
 //Eliminar videos
-videosRouter.delete("videos/:id", videoDelete);
+videosRouter.delete("/videos/:id", videoDelete);
 
 export default videosRouter;

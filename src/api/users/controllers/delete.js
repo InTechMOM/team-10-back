@@ -8,22 +8,18 @@ import User from "../../../models/user.js";
  *    User:
  *     type: object
  *     properties:
- *      firstName:
- *        type: string
- *      lastName:
+ *      name:
  *        type: string
  *      email:
  *        type: string
  *      rol:
  *        type: string
  *     required:
- *      - firstName
- *      - lastName
+ *      - name
  *      - email
  *      - rol
  *     example:
- *      firstName: nicole
- *      lastName: castro
+ *      name: Samuel Reyes
  *      email: some@example.com
  *      rol: Soy Docente
  * 

@@ -4,12 +4,14 @@ import VideoProject from "../../../models/video.js";
  * @openapi 
  *  components:
  *   schemas:
- *    videoprojectSchema:
+ *    VideoprojectSchema:
  *     type: object
  *     properties:
  *      email:
  *        type: string
  *      url:
+ *        type: string
+ *      nameTeacher:
  *        type: string
  *      skills:
  *          communication:
@@ -25,9 +27,11 @@ import VideoProject from "../../../models/video.js";
  *     required:
  *      - email
  *      - url
+ *      - nameTeacher
  *     example:
  *      email: some@example.com
  *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
+ *      nameTeacher: Nicole Castro
  */
 
 /**
@@ -35,7 +39,7 @@ import VideoProject from "../../../models/video.js";
  * /api/videos/{id}:
  *  delete:
  *   summary: Delete a video for id de video
- *   tags: [videoprojectSchema]
+ *   tags: [Videos]
  *   parameters:
  *    - in: path
  *      name: id
@@ -51,7 +55,7 @@ import VideoProject from "../../../models/video.js";
  *       schema:
  *        type: object
  *        items:
- *         $ref: '#/components/schemas/videoprojectSchema'
+ *         $ref: '#/components/schemas/VideoprojectSchema'
  *    400:
  *     description: Something went wrong
  *    500:

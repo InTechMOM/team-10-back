@@ -5,7 +5,7 @@ import { SchemaUpdateQualification } from "../../videos/controllers/validation.j
  * @openapi 
  *  components:
  *   schemas:
- *    videoQualifiedSchema:
+ *    VideoQualifiedSchema:
  *     type: object
  *     properties:
  *      skills:
@@ -37,21 +37,21 @@ import { SchemaUpdateQualification } from "../../videos/controllers/validation.j
  * /api/qualification/{id}:
  *  patch:
  *   summary: Video qualified
- *   tags: [videoQualifiedSchema]
+ *   tags: [videoQualified]
  *   parameters:
  *    - in: path
  *      name: id
  *      schema:
  *        type: string
  *      required: true
- *      description: The qualification id
+ *      description: The qualification id del video
 *   requestBody:
  *    required: true
  *    content:
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/videoQualifiedSchema'
+ *       $ref: '#/components/schemas/VideoQualifiedSchema'
  *   responses:
  *    201:
  *     description: Video qualified

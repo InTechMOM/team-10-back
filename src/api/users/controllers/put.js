@@ -8,20 +8,16 @@ import {schemaUpdate} from "./validation.js";
  *    UserUpate:
  *     type: object
  *     properties:
- *      firstName:
- *        type: string
- *      lastName:
+ *      name:
  *        type: string
  *      email:
  *        type: string
  *      rol:
  *        type: string
  *     required:
- *      - firstName
- *      - lastName
+ *      - name
  *     example:
- *      firstName: nicole
- *      lastName: castro
+ *      name: Samuel Reyes
  * 
  */
 
@@ -29,31 +25,31 @@ import {schemaUpdate} from "./validation.js";
  * @openapi
  * /api/users/{id}:
  *  put:
- *   summary: Update a user
- *   tags: [UserUpate]
- *   parameters:
- *    - in: path
- *      name: id
- *      schema:
- *        type: string
- *      required: true
- *      description: The user id
-*   requestBody:
- *    required: true
- *    content:
- *     application/json:
- *      schema:
- *       type: object
- *       $ref: '#/components/schemas/UserUpate'
- *   responses:
- *    201:
- *     description: User Update
- *    400:
- *     description: Something went wrong
- *    404:
- *     description: User Not Found
- *    500:
- *     description: UnKwnown Error 
+ *    summary: Update a user
+ *    tags: [User]
+ *    parameters:
+ *     - in: path
+ *       name: id
+ *       schema:
+ *         type: string
+ *       required: true
+ *       description: The user id
+ *    requestBody:
+ *     required: true
+ *     content:
+ *      application/json:
+ *       schema:
+ *        type: object
+ *        $ref: '#/components/schemas/UserUpate'
+ *    responses:
+ *     201:
+ *      description: User Update
+ *     400:
+ *      description: Something went wrong
+ *     404:
+ *      description: User Not Found
+ *     500:
+ *      description: UnKwnown Error 
  */
 
 //Validación de datos

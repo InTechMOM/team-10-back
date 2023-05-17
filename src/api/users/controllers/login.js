@@ -23,10 +23,10 @@ import { schemaLogin } from "./validation.js";
 
 /**
  * @openapi
- * /api/users/login:
+ * /api/login:
  *  post:
  *   summary: Access of users
- *   tags: [Login]
+ *   tags: [User]
  *   requestBody:
  *    required: true
  *    content:

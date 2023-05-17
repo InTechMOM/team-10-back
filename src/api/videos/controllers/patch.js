@@ -1,52 +1,56 @@
-import Videoproject from "../../../models/video.js"
+import VideoProject from "../../../models/video.js";
 import { SchemaUpdate } from "./validation.js";
 
 /**
  * @openapi 
  *  components:
  *   schemas:
- *    videoprojectUpdateSchema:
+ *    VideoprojectUpdateSchema:
  *     type: object
  *     properties:
  *      email:
  *        type: string
  *      url:
  *        type: string
+ *      nameTeacher:
+ *        type: string
  *     required:
  *      - url
+ *      - nameTeacher
  *     example:
  *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
+ *      nameTeacher: Nicole Castro
  */
 
 /**
  * @openapi
  * /api/videos/{id}:
- * patch:
- *  summary: Update a video for id video
- *  tags: [videoprojectUpdateSchema]
- *  parameters:
- *   - in: path
- *     name: id
- *     schema:
- *       type: string
- *     required: true
- *     description: The video id
- *  requestBody:
- *   required: true
- *   content:
- *    application/json:
- *     schema:
- *      type: object
- *      $ref: '#/components/schemas/videoprojectUpdateSchema'
- *  responses:
- *   201:
- *    description: Video Update
- *   400:
- *    description: Something went wrong
- *   404:
- *    description: Video Not Found
- *   500:
- *    description: UnKwnown Error 
+ *  patch:
+ *   summary: Update a video for id video
+ *   tags: [Videos]
+ *   parameters:
+ *    - in: path
+ *      name: id
+ *      schema:
+ *        type: string
+ *      required: true
+ *      description: The video id
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       $ref: '#/components/schemas/VideoprojectUpdateSchema'
+ *   responses:
+ *    201:
+ *     description: Video Update
+ *    400:
+ *     description: Something went wrong
+ *    404:
+ *     description: Video Not Found
+ *    500:
+ *     description: UnKwnown Error 
  */
 
 

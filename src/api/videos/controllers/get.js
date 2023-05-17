@@ -6,12 +6,14 @@ import VideoProject from "../../../models/video.js"
  * @openapi 
  *  components:
  *   schemas:
- *    videoprojectSchema:
+ *    VideoprojectSchema:
  *     type: object
  *     properties:
  *      email:
  *        type: string
  *      url:
+ *        type: string
+ *      nameTeacher:
  *        type: string
  *      skills:
  *          communication:
@@ -27,9 +29,11 @@ import VideoProject from "../../../models/video.js"
  *     required:
  *      - email
  *      - url
+ *      - nameTeacher
  *     example:
  *      email: some@example.com
  *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
+ *      nameTeacher: Nicole Castro
  */
 
 /**
@@ -37,7 +41,7 @@ import VideoProject from "../../../models/video.js"
  * /api/videos:
  *  get:
  *   summary: Return all videos uploaded
- *   tags: [videoprojectSchema]
+ *   tags: [Videos]
  *   parameters:
  *    - in: query
  *      name: email
@@ -49,6 +53,11 @@ import VideoProject from "../../../models/video.js"
  *      description: Query for url
  *      schema:
  *        type: string
+ *    - in: query
+ *      name: nameTeacher
+ *      description: Query for nameTeacher
+ *      schema:
+ *        type: string
  *   responses:
  *    200:
  *     description: All videos
@@ -57,7 +66,7 @@ import VideoProject from "../../../models/video.js"
  *       schema:
  *        type: array
  *        items:
- *         $ref: '#/components/schemas/videoprojectSchema'
+ *         $ref: '#/components/schemas/VideoprojectSchema'
  *    400:
  *     description: Something went wrong
  *    500:
@@ -68,15 +77,15 @@ import VideoProject from "../../../models/video.js"
  * @openapi
  * /api/videos/{id}:
  *  get:
- *   summary: Return a video for id user
- *   tags: [videoprojectSchema]
+ *   summary: Return a video for id user (Author)
+ *   tags: [Videos]
  *   parameters:
  *    - in: path
  *      name: id
  *      schema:
  *        type: string
  *      required: true
- *      description: The video id
+ *      description: The video for id user
  *   responses:
  *    200:
  *     description: Video
@@ -85,7 +94,7 @@ import VideoProject from "../../../models/video.js"
  *       schema:
  *        type: object
  *        items:
- *         $ref: '#/components/schemas/videoprojectSchema'
+ *         $ref: '#/components/schemas/VideoprojectSchema'
  *    404:
  *     description: Video Not Found
  *    400:
@@ -96,12 +105,13 @@ import VideoProject from "../../../models/video.js"
 
 //busqueda de videos con :id del usuario
 export const videosId = async (request, response) => { 
+try  {
   const id = request.params.id
   const userVideoId = await VideoProject.findOne ({ authorId: id }) 
-  if (!userVideoId) 
+   if (!userVideoId) 
     return response.status(404).json({
       message:"User has not uploaded videos"})
-  return response.status(200).json({
+    return response.status(200).json({
     data: userVideoId})
   } catch (error) { 
     next (error);

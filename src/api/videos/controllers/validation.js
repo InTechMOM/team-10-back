@@ -15,12 +15,13 @@ export const SchemaUpdate =   Joi.object ({
 
 // Esquema Modifica la calificación
 export const SchemaUpdateQualification =   Joi.object ({
-  qualification: {
+  qualification: ({
     skills: {
         communication: Joi.number().required().min(0).max(5),
         collaboration: Joi.number().required().min(0).max(5),
         creativity: Joi.number().required().min(0).max(5),
         critical_thinking: Joi.number().required().min(0).max(5)
       },
-    comment: Joi.string()
-}})
+    comment: Joi.string()})
+})
+

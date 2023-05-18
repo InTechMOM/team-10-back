@@ -36,7 +36,7 @@ import { SchemaUpdateQualification } from "../validation.js";
 
 /**
  * @openapi
- * /api/video/{id}/qualification:
+ * /api/videos/{id}/qualification:
  *  patch:
  *   summary: Video qualified
  *   tags: [videoQualified]
@@ -69,6 +69,12 @@ import { SchemaUpdateQualification } from "../validation.js";
 const qualificationEdit = async (request, response, next) => { 
   const id = request.params.id
   const {error} = SchemaUpdateQualification.validate(request.body);
+  const { error, value } = SchemaUpdateQualification.validate(request.body);
+
+	  if (!value.qualification?.skills) {
+		return response.status(400).json({ error: 'Qualification must not be empty' })
+	  }
+
     if (error) { 
     return response.status(400).json({error: error.details[0].message}) 
     }

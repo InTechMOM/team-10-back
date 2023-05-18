@@ -23,6 +23,6 @@ videosRouter.patch("/videos/:id", videoEdit);
 videosRouter.delete("/videos/:id", videoDelete);
 
 //Video Calificado
-videosRouter.patch("/video/:id/qualification", qualificationEdit);
+videosRouter.patch("/videos/:id/qualification", qualificationEdit);
 
 export default videosRouter; 

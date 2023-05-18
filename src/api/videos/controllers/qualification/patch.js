@@ -1,5 +1,5 @@
-import VideoProject from "../../../models/video.js"
-import { SchemaUpdateQualification } from "../../videos/controllers/validation.js";
+import VideosProject from "../../../../models/video.js"
+import { SchemaUpdateQualification } from "../validation.js";
 
 /**
  * @openapi 
@@ -8,7 +8,8 @@ import { SchemaUpdateQualification } from "../../videos/controllers/validation.j
  *    VideoQualifiedSchema:
  *     type: object
  *     properties:
- *      skills:
+ *      qualification:
+ *       skills:
  *          communication:
  *            type: string
  *          collaboration:
@@ -23,18 +24,19 @@ import { SchemaUpdateQualification } from "../../videos/controllers/validation.j
  *      - skills
  *      - comment
  *     example:
- *      skills: 
- *       communication: 5
- *       collaboration: 4
- *       creativity: 4
- *       critical_thinking: 5
- *      comment: Buen trabajo
+ *      qualification:
+ *       skills: 
+ *        communication: 5
+ *        collaboration: 4
+ *        creativity: 4
+ *        critical_thinking: 5
+ *       comment: Buen trabajo
  */
 
 
 /**
  * @openapi
- * /api/qualification/{id}:
+ * /api/video/{id}/qualification:
  *  patch:
  *   summary: Video qualified
  *   tags: [videoQualified]
@@ -71,9 +73,8 @@ const qualificationEdit = async (request, response, next) => {
     return response.status(400).json({error: error.details[0].message}) 
     }
    
-  const { skills , comment  } = (request.body);
  try { 
-    const qualificationUpdate = await VideoProject.findByIdAndUpdate(id , request.body, {new:true});
+    const qualificationUpdate = await VideosProject.findByIdAndUpdate(id , {qualification:request.body.qualification, qualified:true} , {new:true});
     if (!qualificationUpdate) {
       return response.status(404).json({
         message:"Video Not Found"})

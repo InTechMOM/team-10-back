@@ -1,12 +1,12 @@
 import User from "../../../models/user.js";
-import VideoProject from "../../../models/video.js";
+import VideosProject from "../../../models/video.js";
 import { SchemaUpload } from "./validation.js";
 
 /**
  * @openapi 
  *  components:
  *   schemas:
- *    VideoprojectSchema:
+ *    VideosprojectSchema:
  *     type: object
  *     properties:
  *      email:
@@ -32,8 +32,8 @@ import { SchemaUpload } from "./validation.js";
  *      - nameTeacher
  *     example:
  *      email: some1@example.com
- *      url: https://www.youtube.com/watch?v=T1QFGwOnQxQ
- *      nameTeacher: Nicole Castro
+ *      url: https://www.youtube.com/watch?v=walFfw6RzTI
+ *      nameTeacher: karen echavarria
  */
 
 /**
@@ -48,7 +48,7 @@ import { SchemaUpload } from "./validation.js";
  *     application/json:
  *      schema:
  *       type: object
- *       $ref: '#/components/schemas/VideoprojectSchema'
+ *       $ref: '#/components/schemas/VideosprojectSchema'
  *   responses:
  *    201:
  *     description: Video Created
@@ -86,7 +86,7 @@ try {
   //Busqueda por nombre del docente en User
     const teacherId = await User.findOne({name:nameTeacher.toUpperCase(), rol:"Soy Docente" }).populate([{
     path: "teacherId", 
-    select: "_id",
+    select: "_id  ",
     strictPopulate: false
   }])
 
@@ -97,12 +97,13 @@ try {
   }
 
   //Creación del video
-  const newVideo = new VideoProject ({
+  const newVideo = new VideosProject ({
     email,
     url,
     nameTeacher:nameTeacher.toUpperCase(),
     authorId: userId._id,
-    teacherId: teacherId._id
+    teacherId: teacherId._id,
+    qualified: false
   })
 
   //Guardado de video

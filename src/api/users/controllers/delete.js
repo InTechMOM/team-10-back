@@ -1,5 +1,5 @@
+import mongoose from "mongoose"; 
 import User from "../../../models/user.js";
-
 
 /**
  * @openapi 
@@ -51,6 +51,8 @@ import User from "../../../models/user.js";
  *     description: Something went wrong
  *    404:
  *     description: User Not Found
+ *    422:
+ *     description: Id Not Valid
  *    500:
  *     description: UnKwnown Error 
  */
@@ -58,6 +60,9 @@ import User from "../../../models/user.js";
 const userDelete = async (request, response, next) => { 
   const id = request.params.id
   try { 
+     if (!mongoose.isValidObjectId(id)) {
+       return response.status(422).json({message: "Id Not Valid"})
+      }
      const userDelete = await User.findByIdAndDelete(id);
      if (!userDelete) {
       return response.status(404).json({

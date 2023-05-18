@@ -1,12 +1,12 @@
+import mongoose from "mongoose"; 
 import User from "../../../models/user.js";
-import VideoProject from "../../../models/video.js"
-
+import VideosProject from "../../../models/video.js"
 
 /**
  * @openapi 
  *  components:
  *   schemas:
- *    VideoprojectSchema:
+ *    VideosprojectSchema:
  *     type: object
  *     properties:
  *      email:
@@ -58,6 +58,11 @@ import VideoProject from "../../../models/video.js"
  *      description: Query for nameTeacher
  *      schema:
  *        type: string
+ *    - in: query
+ *      name: qualified
+ *      description: Query for qualification
+ *      schema:
+ *        type: string
  *   responses:
  *    200:
  *     description: All videos
@@ -66,22 +71,24 @@ import VideoProject from "../../../models/video.js"
  *       schema:
  *        type: array
  *        items:
- *         $ref: '#/components/schemas/VideoprojectSchema'
+ *         $ref: '#/components/schemas/VideosprojectSchema'
  *    400:
  *     description: Something went wrong
+ *    422:
+ *     description: Id Not Valid
  *    500:
  *     description: UnKwnown Error 
  */
 
 /**
  * @openapi
- * /api/videos/{id}:
+ * /api/videos/{authorId}:
  *  get:
  *   summary: Return a video for id user (Author)
  *   tags: [Videos]
  *   parameters:
  *    - in: path
- *      name: id
+ *      name: authorId
  *      schema:
  *        type: string
  *      required: true
@@ -94,25 +101,31 @@ import VideoProject from "../../../models/video.js"
  *       schema:
  *        type: object
  *        items:
- *         $ref: '#/components/schemas/VideoprojectSchema'
+ *         $ref: '#/components/schemas/VideosprojectSchema'
  *    404:
  *     description: Video Not Found
  *    400:
  *     description: Something went wrong
+ *    422:
+ *     description: Id Not Valid
  *    500:
  *     description: UnKwnown Error 
  */
 
 //busqueda de videos con :id del usuario
-export const videosId = async (request, response) => { 
+export const videosId = async (request, response, next) => { 
 try  {
   const id = request.params.id
-  const userVideoId = await VideoProject.findOne ({ authorId: id }) 
+  if (!mongoose.isValidObjectId(id)) {
+    return response.status(422).json({message: "Id Not Valid"})
+   }
+  const userVideoId = await VideosProject.find({ authorId: id }) 
    if (!userVideoId) 
     return response.status(404).json({
       message:"User has not uploaded videos"})
     return response.status(200).json({
-    data: userVideoId})
+     data: userVideoId})
+
   } catch (error) { 
     next (error);
   };
@@ -121,13 +134,14 @@ try  {
 //busqueda de todos los videos cargados (listar), con filtros
 export const allVideos = async (request, response, next) => { 
   try  {
-  const { email , url , nameTeacher } = request.query;
+  const { email , url , nameTeacher , qualified } = request.query;
   const filters = { 
     ...email && { email },
     ...url && { url },
     ...nameTeacher  && { nameTeacher:nameTeacher.toUpperCase() },
+    ...qualified && { qualified },
   }; 
-  const arrayVideos = await VideoProject.find(filters); 
+  const arrayVideos = await VideosProject.find(filters); 
   return response.status(200).json({ 
     list: arrayVideos})
   } catch (error) { 

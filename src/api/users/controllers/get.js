@@ -1,3 +1,4 @@
+import mongoose from "mongoose"; 
 import User from "../../../models/user.js";
 
 //Servidor
@@ -91,6 +92,8 @@ export const serverRead = (request, response, error) => {
  *     description: User Not Found
  *    400:
  *     description: Something went wrong
+ *    422:
+ *     description: Id Not Valid
  *    500:
  *     description: UnKwnown Error 
  */
@@ -120,9 +123,12 @@ export const allUsers = async (request, response, next) => {
 
 
 //busqueda con :id 
-export const userId = async (request, response) => { 
+export const userId = async (request, response, next) => { 
   try  {
-   const id = request.params.id
+   const id = request.params.id;
+    if (!mongoose.isValidObjectId(id)) {
+     return response.status(422).json({message: "Id Not Valid"})
+    }
    const userId = await User.findById(id)
     return response.status(200).json({
       data: userId})
@@ -132,5 +138,5 @@ export const userId = async (request, response) => {
 }
 
 export const preordain = async (request, response, next) => {
-  response.status(404).json({message:"This page does not exist"});
+  return response.status(404).json({message:"This page does not exist"});
 }

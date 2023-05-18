@@ -7,7 +7,6 @@ import { openApiSpecification } from "./config/swagger.js";
 import middlewareErrors from "./api/errors/errors.js";
 import usersRouter from "./api/users/routers/index.js";
 import videosRouter from "./api/videos/routers/index.js";
-import qualificationRouter from "./api/qualification/routers/index.js";
 import { preordain } from "./api/users/controllers/get.js";
 import { serverRead } from "./api/users/controllers/get.js";
 
@@ -21,7 +20,6 @@ app.use("/docs", swaggerUi.serve);
 app.get("/docs", swaggerUi.setup(openApiSpecification));
 app.use("/api", usersRouter);
 app.use("/api", videosRouter);
-app.use("/api", qualificationRouter);
 
 //Errores
 app.use(middlewareErrors);

@@ -1,3 +1,4 @@
+import mongoose from "mongoose"; 
 import User from "../../../models/user.js";
 import {schemaUpdate} from "./validation.js";
 
@@ -48,6 +49,8 @@ import {schemaUpdate} from "./validation.js";
  *      description: Something went wrong
  *     404:
  *      description: User Not Found
+ *     422:
+ *      description: Id Not Valid
  *     500:
  *      description: UnKwnown Error 
  */
@@ -56,6 +59,9 @@ import {schemaUpdate} from "./validation.js";
 const userEdit = async (request, response, next) => { 
   try { 
    const id = request.params.id
+    if (!mongoose.isValidObjectId(id)) {
+     return response.status(422).json({message: "Id Not Valid"})
+    }
    const {error} = schemaUpdate.validate(request.body);
      if (error) { 
      return response.status(400).json({error: error.details[0].message}) 

@@ -5,6 +5,7 @@ import upload from "../controllers/post.js";
 import { videosId , allVideos } from "../controllers/get.js";
 import videoEdit from "../controllers/patch.js";
 import videoDelete from "../controllers/delete.js";
+import  qualificationEdit from "../controllers/qualification/patch.js";
 
 //videos
 
@@ -21,4 +22,7 @@ videosRouter.patch("/videos/:id", videoEdit);
 //Eliminar videos
 videosRouter.delete("/videos/:id", videoDelete);
 
-export default videosRouter;
+//Video Calificado
+videosRouter.patch("/video/:id/qualification", qualificationEdit);
+
+export default videosRouter; 

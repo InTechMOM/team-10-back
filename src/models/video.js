@@ -1,7 +1,7 @@
 import User from "./user.js";
 import { Schema, model} from "mongoose";
 
-const videoProjectSchema = new Schema(
+const videosProjectSchema = new Schema(
 {
     email: {
       type:String,
@@ -31,39 +31,40 @@ const videoProjectSchema = new Schema(
       type: Schema.Types.ObjectId, 
       ref: "User" 
     },
-    skills: {
-      communication: {
-      type:Number,
-      required:true,
-      min:0,
-      max:5
-     },
-      collaboration: {
-      type:Number,
-      required:true,
-      min:0,
-      max:5
+    qualification:{
+      skills: {
+        communication: {
+        type:Number,
+        min:0,
+        max:5
       },
-      creativity: {
-      type:Number,
-      required:true,
-      min:0,
-      max:5
+        collaboration: {
+        type:Number,
+        min:0,
+        max:5
       },
-      critical_thinking: {
-      type:Number,
-      required:true,
-      min:0,
-      max:5
+        creativity: {
+        type:Number,
+        min:0,
+        max:5
+      },
+        critical_thinking: {
+        type:Number,
+        min:0,
+        max:5
       }
+      },
+      comment: {
+        type:String
+      },
     },
-    comment: {
-      type:String
-    },   
+    qualified:{
+        type:Boolean
+    }  
  },
 { 
   timestamps: true,    
 }
 )
 
-export default model("Videoproject", videoProjectSchema);
+export default model("VideosProject", videosProjectSchema);

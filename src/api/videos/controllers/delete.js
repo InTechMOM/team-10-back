@@ -1,10 +1,11 @@
-import VideoProject from "../../../models/video.js";
+import mongoose from "mongoose"; 
+import VideosProject from "../../../models/video.js";
 
 /**
  * @openapi 
  *  components:
  *   schemas:
- *    VideoprojectSchema:
+ *    VideosprojectSchema:
  *     type: object
  *     properties:
  *      email:
@@ -55,9 +56,11 @@ import VideoProject from "../../../models/video.js";
  *       schema:
  *        type: object
  *        items:
- *         $ref: '#/components/schemas/VideoprojectSchema'
+ *         $ref: '#/components/schemas/VideosprojectSchema'
  *    400:
  *     description: Something went wrong
+ *    422:
+ *     description: Id Not Valid
  *    500:
  *     description: UnKwnown Error 
  */
@@ -65,7 +68,10 @@ import VideoProject from "../../../models/video.js";
 const videoDelete = async (request, response, next) => { 
   const id = request.params.id
   try { 
-     const videoDelete = await VideoProject.findByIdAndDelete(id);
+     if (!mongoose.isValidObjectId(id)) {
+       return response.status(422).json({message: "Id Not Valid"})
+      }
+     const videoDelete = await VideosProject.findByIdAndDelete(id);
      if (!videoDelete) {
       return response.status(404).json({
         message:"Video Not Found"})

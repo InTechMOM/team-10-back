@@ -45,7 +45,7 @@ import { schemaLogin } from "./validation.js";
 
 
 const login = async (request, response, next) => {
-
+try {
   // Login
   const {error} = schemaLogin.validate(request.body);
   if (error) { 
@@ -54,10 +54,12 @@ const login = async (request, response, next) => {
 
   //Acceso
   const userValidation = await User.findOne({ email:request.body.email , rol:request.body.rol }) 
-  if (!userValidation) return response.status(400).json({error: "Unauthorized Access"});
+  if (!userValidation)
+  return response.status(400).json({error: "Unauthorized Access"});
    response.status(200).json("Welcome " + userValidation.name)
-
- next (error);
+  } catch (error) { 
+    next (error);
+  };
 }
 
 export default login ;

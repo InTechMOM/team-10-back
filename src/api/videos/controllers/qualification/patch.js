@@ -68,7 +68,6 @@ import { SchemaUpdateQualification } from "../validation.js";
 //Modifica calificación por su propio id del video(unidad), en las 4 ambitos
 const qualificationEdit = async (request, response, next) => { 
   const id = request.params.id
-  const {error} = SchemaUpdateQualification.validate(request.body);
   const { error, value } = SchemaUpdateQualification.validate(request.body);
 
 	  if (!value.qualification?.skills) {

@@ -26,7 +26,7 @@ import { SchemaUpdate } from "./validation.js";
 
 /**
  * @openapi
- * /api/videos/{id}
+ * /api/videos/{id}:
  *  patch:
  *   summary: Update a video for id video
  *   tags: [Videos]

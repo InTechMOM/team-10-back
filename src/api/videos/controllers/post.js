@@ -1,6 +1,62 @@
 import User from "../../../models/user.js";
-import VideoProject from "../../../models/video.js";
+import VideosProject from "../../../models/video.js";
 import { SchemaUpload } from "./validation.js";
+
+/**
+ * @openapi 
+ *  components:
+ *   schemas:
+ *    VideosprojectSchema:
+ *     type: object
+ *     properties:
+ *      email:
+ *        type: string
+ *      url:
+ *        type: string
+ *      nameTeacher:
+ *        type: string
+ *      skills:
+ *          communication:
+ *            type: string
+ *          collaboration:
+ *            type: string
+ *          creativity:
+ *            type: string
+ *          critical_thinking:
+ *            type: string
+ *      comment:
+ *        type: string
+ *     required:
+ *      - email
+ *      - url
+ *      - nameTeacher
+ *     example:
+ *      email: some1@example.com
+ *      url: https://www.youtube.com/watch?v=walFfw6RzTI
+ *      nameTeacher: karen echavarria
+ */
+
+/**
+ * @openapi
+ * /api/upload:
+ *  post:
+ *   summary: Upload Video
+ *   tags: [Videos]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       $ref: '#/components/schemas/VideosprojectSchema'
+ *   responses:
+ *    201:
+ *     description: Video Created
+ *    400:
+ *     description: Something went wrong
+ *    500:
+ *     description: UnKwnown Error 
+ */
 
 export const upload = async (request, response, next) => {
   
@@ -23,14 +79,14 @@ try {
 
   if (!userId) {
     return response.status(404).json({
-      error:"Email not register"
+      error:" Unregistered student email "
     })
   }
 
   //Busqueda por nombre del docente en User
     const teacherId = await User.findOne({name:nameTeacher.toUpperCase(), rol:"Soy Docente" }).populate([{
     path: "teacherId", 
-    select: "_id",
+    select: "_id  ",
     strictPopulate: false
   }])
 
@@ -41,17 +97,18 @@ try {
   }
 
   //Creación del video
-  const newVideo = new VideoProject ({
+  const newVideo = new VideosProject ({
     email,
     url,
     nameTeacher:nameTeacher.toUpperCase(),
     authorId: userId._id,
-    teacherId: teacherId._id
+    teacherId: teacherId._id,
+    qualified: false
   })
 
   //Guardado de video
     const saveVideo = await newVideo.save()
-    response.status(200).json({
+    response.status(201).json({
       upload:("Ok"),
       data: saveVideo
     })

@@ -1,6 +1,52 @@
 import User from "../../../models/user.js";
 import { schemaRegister } from "./validation.js";
 
+/**
+ * @openapi 
+ *  components:
+ *   schemas:
+ *    User:
+ *     type: object
+ *     properties:
+ *      name:
+ *        type: string
+ *      email:
+ *        type: string
+ *      rol:
+ *        type: string
+ *     required:
+ *      - name
+ *      - email
+ *      - rol
+ *     example:
+ *      name: Samuel Reyes
+ *      email: some@example.com
+ *      rol: Soy Docente
+ * 
+ */
+
+/**
+ * @openapi
+ * /api/register:
+ *  post:
+ *   summary: Creation of users
+ *   tags: [User]
+ *   requestBody:
+ *    required: true
+ *    content:
+ *     application/json:
+ *      schema:
+ *       type: object
+ *       $ref: '#/components/schemas/User'
+ *   responses:
+ *    201:
+ *     description: User Created
+ *    400:
+ *     description: Bad Request
+ *    500:
+ *     description: UnKwnown Error 
+ */
+
 export const register = async (request, response, next) => { 
 
 //Registro 

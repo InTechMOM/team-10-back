@@ -43,6 +43,8 @@ import { schemaRegister } from "./validation.js";
  *     description: User Created
  *    400:
  *     description: Bad Request
+ *    409:
+ *     description: email or name is assigned to another user
  *    500:
  *     description: UnKwnown Error 
  */
@@ -86,7 +88,9 @@ export const register = async (request, response, next) => {
     })
 
   } catch (error) { 
-    next (error);
+    if  (error.code === 11000) {
+      return response.status(409).json({error:"email or name is assigned to another user"});
+    } next (error);
   };
 }
 

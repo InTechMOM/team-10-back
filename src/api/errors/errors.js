@@ -1,5 +1,5 @@
 const middlewareErrors = (error, request, response, next) => {
-if (error) {
+if (error.patch) {
   return response.status(400).json({ 
     status: "error",
     send: "Something went wrong",
@@ -8,8 +8,9 @@ if (error) {
     patch: error.patch
 });
 } else { 
-  return response.status(500).json({ 
+   return response.status(500).json({ 
     status: "error",
+    send:"Internal server error",
     name: "UnKwnown Error",
     message: "UnKwnown Error",
   })
@@ -17,7 +18,3 @@ if (error) {
 }
 
 export default middlewareErrors;
-
-
-
-

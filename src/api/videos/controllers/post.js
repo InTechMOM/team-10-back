@@ -54,6 +54,8 @@ import { SchemaUpload } from "./validation.js";
  *     description: Video Created
  *    400:
  *     description: Something went wrong
+ *    409:
+ *     description: URL is assigned to another user 
  *    500:
  *     description: UnKwnown Error 
  */
@@ -114,7 +116,9 @@ try {
     })
 
   } catch (error) { 
-    next (error)
+    if  (error.code === 11000) {
+      return response.status(409).json({error:"URL is assigned to another user"});
+    } next (error)
   }    
 }
 

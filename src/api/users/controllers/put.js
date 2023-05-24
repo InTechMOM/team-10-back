@@ -49,6 +49,8 @@ import {schemaUpdate} from "./validation.js";
  *      description: Something went wrong
  *     404:
  *      description: User Not Found
+ *     409:
+ *      description: name is assigned to another user
  *     422:
  *      description: Id Not Valid
  *     500:
@@ -79,7 +81,9 @@ const userEdit = async (request, response, next) => {
       data: userUpdate
     })
    } catch (error) { 
-     next (error);
+    if  (error.code === 11000) {
+      return response.status(409).json({error:"name is assigned to another user"});
+    } next (error);
    };
  }
 

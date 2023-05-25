@@ -1,4 +1,5 @@
 import express from "express"; 
+import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import { port } from "./config/index.js"; 
 import "./config/dbConnection.js"; 
@@ -15,6 +16,7 @@ const app = express();
 //API´s
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); 
+app.use(cors());
 app.get("/", serverRead);
 app.use("/docs", swaggerUi.serve);
 app.get("/docs", swaggerUi.setup(openApiSpecification));

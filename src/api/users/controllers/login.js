@@ -37,7 +37,7 @@ import { schemaLogin } from "./validation.js";
  *   responses:
  *    201:
  *     description: Access a user
- *    400:
+ *    403:
  *     description: Unauthorized Access
  *    500:
  *     description: UnKwnown Error 
@@ -55,7 +55,7 @@ try {
   //Acceso
   const userValidation = await User.findOne({ email:request.body.email , rol:request.body.rol }) 
   if (!userValidation)
-  return response.status(400).json({error: "Unauthorized Access"});
+  return response.status(403).json({error: "Unauthorized Access"});
    response.status(200).json("Welcome " + userValidation.name)
   } catch (error) { 
     next (error);

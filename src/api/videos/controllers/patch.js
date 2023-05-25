@@ -51,6 +51,8 @@ import { SchemaUpdate } from "./validation.js";
  *     description: Something went wrong
  *    404:
  *     description: Video Not Found
+ *    409:
+ *     description: URL is assigned to another user
  *    422:
  *     description: Id Not Valid
  *    500:
@@ -97,7 +99,9 @@ const videoEdit = async (request, response, next) => {
        data: videoUpdate
       })
   } catch (error) { 
-    next (error);
+    if  (error.code === 11000) {
+      return response.status(409).json({error:"URL is assigned to another user"});
+    } next (error);
   };
 }
 
